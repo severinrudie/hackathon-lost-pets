@@ -46,7 +46,6 @@ public class Pet {
                String image, String city, String name, String animalGender,
                String animalBreed, String link, int zip, String address, String memo, String currentLocation) {
         this.animalId = animalId;
-//        this.coordinates = coordinates;
         this.animalType = animalType;
         this.date = date;
         this.dateType = dateType;

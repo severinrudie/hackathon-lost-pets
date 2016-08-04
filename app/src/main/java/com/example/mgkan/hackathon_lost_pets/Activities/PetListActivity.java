@@ -64,6 +64,8 @@ public class PetListActivity extends AppCompatActivity {
 
         type = getIntent().getStringExtra("TYPE");
 
+
+        // TODO: do this if enough time's elapsed.  drop db first
         populateWithSearchedFoundAnimal(rvPets, type, "");
 
         ImageView exitButton = (ImageView) findViewById(R.id.exitListCard);
