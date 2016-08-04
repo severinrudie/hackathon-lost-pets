@@ -48,8 +48,4 @@ public class SC {
                     LOCATION + " text " +
                     ");" +
                     "";
-
-
-
-
 }
