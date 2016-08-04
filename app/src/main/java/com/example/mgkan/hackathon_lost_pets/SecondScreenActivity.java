@@ -27,12 +27,13 @@ public class SecondScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second_like_main);
 
         // TODO: SEV db test code
-        //DBHelper helper = DBHelper.getInstance(this);
+
+        DBHelper helper = DBHelper.getInstance(this);
 
 //        Pet pet = new Pet("a", "b", "2016-05-12T00:00:00", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
 
 //        helper.dropAllTables();
-        //helper.createDbIfNotExists();
+        helper.createDbIfNotExists();
 //        List<Pet> pets = helper.getPetListFromDb();
 //        helper.insertPetIntoDb(pet);
         // TODO: SEV db test code

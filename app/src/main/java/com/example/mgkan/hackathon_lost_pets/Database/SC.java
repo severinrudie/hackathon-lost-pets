@@ -33,8 +33,8 @@ public class SC {
     public static final String LOCATION = "location";
     public static final String DAY_INT = "day_int";
 
-    public static final String CREATE_TABLE =
-            "CREATE TABLE " + TABLE_PETS + " (" +
+    public static final String CREATE_TABLE_PETS =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_PETS + " (" +
                     ID + " text, " +
                     TYPE + " text, " +
                     DATE + " text, " +
@@ -52,5 +52,13 @@ public class SC {
                     DAY_INT + " integer, " +
                     LOCATION + " text " +
                     ");" +
+                    "";
+
+    public static final String TABLE_TIME = "table_time";
+    public static final String SAVED_TIME = "savedTime";
+
+    public static final String CREATE_TABLE_TIME =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_TIME + " (" +
+                    SAVED_TIME + " int);" +
                     "";
 }

@@ -15,7 +15,6 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
   @GET("murn-chih.json")
-  Call<List<Pet>> getPetsWithSearch(@Query("$$app_token") String apiToken, @Query("animal_type") String animalType,
-                          @Query("Record_Type") String recordType, @Query("$order") String sort,
-                                    @Query("$where=q") String search);
+  Call<List<Pet>> getPetsWithSearch(@Query("$$app_token") String apiToken,
+                          @Query("Record_Type") String recordType, @Query("$order") String sort);
 }

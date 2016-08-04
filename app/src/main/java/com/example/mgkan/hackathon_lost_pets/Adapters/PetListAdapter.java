@@ -1,27 +1,22 @@
 package com.example.mgkan.hackathon_lost_pets.Adapters;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
-import android.os.Bundle;
+import android.graphics.Bitmap;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.support.v7.widget.CardView;
-import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.DetailActivity;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.R;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.ImageViewBitmapInfo;
 import com.koushikdutta.ion.Ion;
 
 import java.util.List;
@@ -84,62 +79,91 @@ public class PetListAdapter extends
     public void onBindViewHolder(final PetListAdapter.ViewHolder holder, final int position) {
         Pet pet = mPets.get(position);
 
-        String url = pet.getImage();
+        final String url = pet.getImage();
 
         Ion.with(holder.photo)
                 .placeholder(R.color.colorPrimary)
                 .error(R.color.colorAccent)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)
-                .load(url);
+                .load(url)
+            .withBitmapInfo()
+            .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
+              @Override
+              public void onCompleted(Exception e, ImageViewBitmapInfo result) {
+                // Check for exceptions
+
+                // Check bitmaps first
+                Bitmap b = result.getBitmapInfo().bitmap;
+                int size = b.getByteCount();
+                // most found images are: 307200KB
+                // most error images are:  76800KB
+                Log.d("IMAGE_SIZE", size + "KB " + url);
+              }
+            });
 
 //        if (pet.getName() != null) {
 
-        String[] splitDate = pet.getDate().split("-");
-        splitDate[2] = splitDate[2].split("T")[0];
+              String[] splitDate = pet.getDate().split("-");
+              splitDate[2]=splitDate[2].
 
-        String month = monthConstructor(splitDate[1]);
-        String day = splitDate[2];
-        if (day.charAt(0)=='0') {
-            day = day.substring(1);
-        }
+              split("T")[
 
+              0];
 
-        String year = splitDate[0];
-        String formattedDate = month + " " + day + ", " + year;
+              String month = monthConstructor(splitDate[1]);
+              String day = splitDate[2];
+              if(day.charAt(0)=='0')
 
-
-        holder.breed.setText(pet.getAnimalBreed());
-        holder.date.setText(formattedDate);
-        holder.gender.setText(pet.getAnimalGender());
-
-        String s = pet.getName();
+              {
+                day = day.substring(1);
+              }
 
 
-        if (s.equals("null")) {
-            holder.name.setVisibility(View.GONE);
-        } else {
-            holder.name.setText(s);
-        }
+              String year = splitDate[0];
+              String formattedDate = month + " " + day + ", " + year;
 
 
-        holder.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+              holder.breed.setText(pet.getAnimalBreed());
+              holder.date.setText(formattedDate);
+              holder.gender.setText(pet.getAnimalGender());
+
+              String s = pet.getName();
+
+
+              if(s.equals("null"))
+
+              {
+                holder.name.setVisibility(View.GONE);
+              }
+
+              else
+
+              {
+                holder.name.setText(s);
+              }
+
+
+              holder.view.setOnClickListener(new View.OnClickListener()
+
+              {
+                @Override
+                public void onClick (View view){
                 Intent i = new Intent(getContext(), DetailActivity.class);
 
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra("POS",position);
+                i.putExtra("POS", position);
                 mContext.startActivity(i);
+              }
+              }
+
+              );
+
+
             }
-        });
 
-
-
-    }
-
-    // Returns the total count of items in the list
-    @Override
+                // Returns the total count of items in the list
+      @Override
     public int getItemCount() {
         return mPets.size();
     }
