@@ -25,7 +25,7 @@ public class PetResponse {
     this.page = page;
   }
 
-  public List<com.example.mgkan.hackathon_lost_pets.Model.Pet> getResults() {
+  public List<Pet> getResults() {
     return results;
   }
 
