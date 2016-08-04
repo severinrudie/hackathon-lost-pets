@@ -27,7 +27,7 @@ public class PetListAdapter extends
         RecyclerView.Adapter<PetListAdapter.ViewHolder> {
 
 
-
+    int size;
     private List<Pet> mPets;
     private Context mContext;
 
@@ -85,6 +85,7 @@ public class PetListAdapter extends
                 .error(R.color.colorAccent)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)
+
                 .load(url)
             .withBitmapInfo()
             .setCallback(new FutureCallback<ImageViewBitmapInfo>() {

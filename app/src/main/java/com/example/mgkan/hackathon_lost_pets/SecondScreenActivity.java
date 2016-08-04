@@ -31,7 +31,6 @@ public class SecondScreenActivity extends AppCompatActivity {
         DBHelper helper = DBHelper.getInstance(this);
 
 //        Pet pet = new Pet("a", "b", "2016-05-12T00:00:00", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
-
 //        helper.dropAllTables();
         helper.createDbIfNotExists();
 //        List<Pet> pets = helper.getPetListFromDb();
