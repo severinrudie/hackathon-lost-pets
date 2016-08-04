@@ -44,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
           Intent i = new Intent(MainActivity.this, SecondScreenActivity.class);
 
           Pair<View, String> pair1 = Pair.create(kitty, kitty.getTransitionName());
-//        Pair<View, String> pair2 = Pair.create(petProfile, petProfile.getTransitionName());
-//        Pair<View, String> pair3 = Pair.create(lostAndFound, lostAndFound.getTransitionName());
+
           ActivityOptions options = ActivityOptions.
                   makeSceneTransitionAnimation(MainActivity.this, pair1);
           startActivity(i, options.toBundle());
