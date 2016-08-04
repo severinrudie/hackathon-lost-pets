@@ -85,7 +85,7 @@ public class SecondScreenActivity extends AppCompatActivity {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
           //set message, title, and icon
           .setTitle("Found A Pet")
-          .setMessage("Did you find a dog or cat?")
+          .setMessage("Did you find a dog or a cat?")
           .setIcon(R.drawable.ic_adb)
 
           .setPositiveButton("Cat", new DialogInterface.OnClickListener() {
