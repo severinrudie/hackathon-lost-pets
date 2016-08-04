@@ -40,6 +40,16 @@ public class SecondScreenActivity extends AppCompatActivity {
                 diaBox.show();
             }
         });
+        foundAPet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("http://www.kingcounty.gov/depts/regional-animal-services/lost-and-found/FOUND.aspx"));
+                startActivity(intent);
+            }
+        });
 
     }
     private AlertDialog AskOptionHome() {

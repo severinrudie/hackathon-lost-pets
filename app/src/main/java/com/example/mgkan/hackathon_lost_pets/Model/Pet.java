@@ -1,5 +1,7 @@
 package com.example.mgkan.hackathon_lost_pets.Model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
