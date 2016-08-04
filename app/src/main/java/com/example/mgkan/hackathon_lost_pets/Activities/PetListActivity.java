@@ -55,9 +55,12 @@ public class PetListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.search_name);
         setContentView(R.layout.activity_pet_list);
 
         verifyStoragePermissions(this);
+
+//        getActionBar().setTitle("Refine search");
 
         handleIntent(getIntent());
 
@@ -69,14 +72,14 @@ public class PetListActivity extends AppCompatActivity {
         // TODO: do this if enough time's elapsed.  drop db first
         populateWithSearchedFoundAnimal(rvPets, type, "");
 
-        ImageView exitButton = (ImageView) findViewById(R.id.exitListCard);
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View listCard = findViewById(R.id.list_info_card);
-                listCard.setVisibility(View.GONE);
-            }
-        });
+//        ImageView exitButton = (ImageView) findViewById(R.id.exitListCard);
+//        exitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                View listCard = findViewById(R.id.list_info_card);
+//                listCard.setVisibility(View.GONE);
+//            }
+//        });
 
 
     }
