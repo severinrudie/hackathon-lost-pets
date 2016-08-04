@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:elevation="2dp"
             android:src="@drawable/title_header"
+            android:id="@+id/title"
             android:adjustViewBounds="true"
             android:layout_gravity="bottom" />
 
