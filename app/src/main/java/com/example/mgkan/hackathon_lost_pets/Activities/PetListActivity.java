@@ -155,37 +155,40 @@ public class PetListActivity extends AppCompatActivity {
 
         Call<List<Pet>> call = apiService.getPetsWithSearch(apiToken, animal, "FOUND", "date DESC", search);
 
-        pets = new ArrayList<>();
+        DBHelper helper = DBHelper.getInstance(this);
+        pets = helper.getPetListFromDb();
 
-        call.enqueue(new Callback<List<Pet>>() {
-            @Override
-            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+        if (pets.size() == 0) {
+            call.enqueue(new Callback<List<Pet>>() {
+                @Override
+                public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
 
-                int statusCode = response.code();
-                if (statusCode > 199 && statusCode < 300) {
+                    int statusCode = response.code();
+                    if (statusCode > 199 && statusCode < 300) {
 
-                    pets = (response.body());
-                    DBHelper helper = DBHelper.getInstance(getBaseContext());
-                    for (Pet pet : pets) {
-                        helper.insertPetIntoDb(pet);
-                    }
-                    PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
+                        pets = (response.body());
+                        DBHelper helper = DBHelper.getInstance(getBaseContext());
+                        for (Pet pet : pets) {
+                            helper.insertPetIntoDb(pet);
+                        }
+                        PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
 
-                    if (rvPets.getAdapter() == null) {
-                        rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
-                        rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                    } else {
-                        rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+                        if (rvPets.getAdapter() == null) {
+                            rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
+                            rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                        } else {
+                            rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<Pet>> call, Throwable t) {
-                Log.d("SEVTEST: ", "Call response != 200 code");
-                t.printStackTrace();
-            }
-        });
+                @Override
+                public void onFailure(Call<List<Pet>> call, Throwable t) {
+                    Log.d("SEVTEST: ", "Call response != 200 code");
+                    t.printStackTrace();
+                }
+            });
+        }
     }
 
 

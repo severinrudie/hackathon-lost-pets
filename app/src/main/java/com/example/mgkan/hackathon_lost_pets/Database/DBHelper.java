@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,21 +70,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // This method returns the character ID of the inserted row after inserting character details
     public void insertPetIntoDb(Pet pet) {
-        String id = pet.getAnimalId();
-        String type = pet.getAnimalType();
-        String date = pet.getDate();
-        String dateType = pet.getDateType();
-        String color = pet.getColor();
-        String image = pet.getImage();
-        String city = pet.getCity();
-        String name = pet.getName();
-        String gender = pet.getAnimalGender();
-        String breed = pet.getAnimalBreed();
-        String link = pet.getLink();
+        String id = cleanTextForDb(pet.getAnimalId());
+        String type = cleanTextForDb(pet.getAnimalType());
+        String date = cleanTextForDb(pet.getDate());
+        String dateType = cleanTextForDb(pet.getDateType());
+        String color = cleanTextForDb(pet.getColor());
+        String image = cleanTextForDb(pet.getImage());
+        String city = cleanTextForDb(pet.getCity());
+        String name = cleanTextForDb(pet.getName());
+        String gender = cleanTextForDb(pet.getAnimalGender());
+        String breed = cleanTextForDb(pet.getAnimalBreed());
+        String link = cleanTextForDb(pet.getLink());
         int zip = pet.getZip();
-        String address = pet.getAddress();
-        String memo = pet.getMemo();
-        String location = pet.getCurrentLocation();
+        String address = cleanTextForDb(pet.getAddress());
+        String memo = cleanTextForDb(pet.getMemo());
+        String location = cleanTextForDb(pet.getCurrentLocation());
 
         String sql = "INSERT INTO " + SC.TABLE_PETS + " (" + SC.ID + ", " + SC.TYPE + ", " + SC.DATE + ", "
                 + SC.DATE_TYPE + ", " + SC.COLOR + ", " + SC.IMAGE + ", " + SC.CITY + ", " + SC.NAME + ", "
@@ -98,9 +99,55 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public String cleanTextForDb(String string) {
-        string = string.replace("'", "''");
-        string = string.replace("\"", "\\\"");
+        if (string != null) {
+            string = string.replace("'", "''");
+            string = string.replace("\"", "\\\"");
+        }
         return string;
+    }
+
+//    public static final String ID = "animalId";
+//    public static final String TYPE = "type";
+//    public static final String DATE = "date";
+//    public static final String DATE_TYPE = "dateType";
+//    public static final String COLOR = "color";
+//    public static final String IMAGE = "image";
+//    public static final String CITY = "city";
+//    public static final String NAME = "name";
+//    public static final String GENDER = "gender";
+//    public static final String BREED = "breed";
+//    public static final String LINK = "link";
+//    public static final String ZIP = "zip";
+//    public static final String ADDRESS = "address";
+//    public static final String MEMO = "memo";
+//    public static final String LOCATION = "location";
+    public List<Pet> getPetListFromDb() {
+        String sql = "SELECT * FROM " + SC.TABLE_PETS +";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+
+        List<Pet> pets = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            String id = cursor.getString(cursor.getColumnIndexOrThrow(SC.ID));
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(SC.TYPE));
+            String date = cursor.getString(cursor.getColumnIndexOrThrow(SC.DATE));
+            String dateType = cursor.getString(cursor.getColumnIndexOrThrow(SC.DATE_TYPE));
+            String color = cursor.getString(cursor.getColumnIndexOrThrow(SC.COLOR));
+            String image = cursor.getString(cursor.getColumnIndexOrThrow(SC.IMAGE));
+            String city = cursor.getString(cursor.getColumnIndexOrThrow(SC.CITY));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(SC.NAME));
+            String gender = cursor.getString(cursor.getColumnIndexOrThrow(SC.GENDER));
+            String breed = cursor.getString(cursor.getColumnIndexOrThrow(SC.BREED));
+            String link = cursor.getString(cursor.getColumnIndexOrThrow(SC.LINK));
+            int zip = cursor.getInt(cursor.getColumnIndexOrThrow(SC.ZIP));
+            String address = cursor.getString(cursor.getColumnIndexOrThrow(SC.ADDRESS));
+            String memo = cursor.getString(cursor.getColumnIndexOrThrow(SC.MEMO));
+            String location = cursor.getString(cursor.getColumnIndexOrThrow(SC.LOCATION));
+            pets.add(new Pet(id, type, date, dateType, color, image, city, name, gender, breed, link, zip
+            , address, memo, location));
+        }
+        return pets;
     }
 
 
