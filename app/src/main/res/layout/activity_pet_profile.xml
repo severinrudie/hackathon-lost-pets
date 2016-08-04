@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/list_item_text_big"
                 android:textColor="@color/text_color"
-                android:text="Terrier Mix"
+                android:text="Labrador Retriever"
                 android:paddingLeft="@dimen/list_item_text_padding"/>
 
 
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/list_item_text_big"
                 android:textColor="@color/text_color"
-                android:text="Tricolor"
+                android:text="White / Yellow"
                 android:paddingLeft="@dimen/list_item_text_padding"/>
 
 

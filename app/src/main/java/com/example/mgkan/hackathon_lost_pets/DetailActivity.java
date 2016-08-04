@@ -85,7 +85,7 @@ public class DetailActivity extends AppCompatActivity {
             + "Location: "+ address+"\n\n"
             + "Phone: "+ phoneNumber.get(address)+"\n\n"
             + "Animal ID: "+ animalId)
-          .setIcon(R.drawable.ic_adb)
+          .setIcon(R.drawable.icon_profile_sm)
 
           .create();
         return myQuittingDialogBox;
