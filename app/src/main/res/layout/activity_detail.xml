@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.example.mgkan.hackathon_lost_pets.DetailActivity">
 
     <FrameLayout
@@ -25,21 +26,36 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="5dp"
         android:id="@+id/dog_breed"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="5dp"
+        android:id="@+id/dog_gender"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="5dp"
         android:id="@+id/dog_date_found"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="5dp"
         android:id="@+id/dog_color"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="5dp"
         android:id="@+id/dog_area"/>
 
     <Button
@@ -57,6 +73,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center_horizontal"
-        android:text="Lost and Found"/>
+        android:text="That's my pet!"/>
 
 </LinearLayout>
