@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.Adapters.PetListAdapter;
+import com.example.mgkan.hackathon_lost_pets.Database.DBHelper;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.Model.PetResponse;
 import com.example.mgkan.hackathon_lost_pets.R;
@@ -54,9 +55,12 @@ public class PetListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.search_name);
         setContentView(R.layout.activity_pet_list);
 
         verifyStoragePermissions(this);
+
+//        getActionBar().setTitle("Refine search");
 
         handleIntent(getIntent());
 
@@ -64,16 +68,18 @@ public class PetListActivity extends AppCompatActivity {
 
         type = getIntent().getStringExtra("TYPE");
 
+
+        // TODO: do this if enough time's elapsed.  drop db first
         populateWithSearchedFoundAnimal(rvPets, type, "");
 
-        ImageView exitButton = (ImageView) findViewById(R.id.exitListCard);
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View listCard = findViewById(R.id.list_info_card);
-                listCard.setVisibility(View.GONE);
-            }
-        });
+//        ImageView exitButton = (ImageView) findViewById(R.id.exitListCard);
+//        exitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                View listCard = findViewById(R.id.list_info_card);
+//                listCard.setVisibility(View.GONE);
+//            }
+//        });
 
 
     }
@@ -107,7 +113,7 @@ public class PetListActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
 
-            populateWithSearchedFoundAnimal(rvPets,type,query);
+//            populateWithSearchedFoundAnimal(rvPets,type,query);
 
         }
 
@@ -158,10 +164,11 @@ public class PetListActivity extends AppCompatActivity {
                 int statusCode = response.code();
                 if (statusCode > 199 && statusCode < 300) {
 
-//                    for (Pet pet : response.body()) {
-//                        pets.add(pet);
-//                    }
                     pets = (response.body());
+                    DBHelper helper = DBHelper.getInstance(getBaseContext());
+                    for (Pet pet : pets) {
+                        helper.insertPetIntoDb(pet);
+                    }
                     PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
 
                     if (rvPets.getAdapter() == null) {
@@ -199,7 +206,7 @@ public class PetListActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                populateWithSearchedFoundAnimal(rvPets, type, newText);
+//                populateWithSearchedFoundAnimal(rvPets, type, newText);
                 return false;
             }
         });

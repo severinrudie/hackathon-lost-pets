@@ -93,11 +93,7 @@ public class PetListAdapter extends
 //                .animateIn(fadeInAnimation)
                 .load(url);
 
-        if (pet.getName() != null) {
-            holder.name.setText(pet.getName());
-        } else {
-            holder.name.setVisibility(View.GONE);
-        }
+//        if (pet.getName() != null) {
 
         String[] splitDate = pet.getDate().split("-");
         splitDate[2] = splitDate[2].split("T")[0];
@@ -126,6 +122,15 @@ public class PetListAdapter extends
                 mContext.startActivity(i);
             }
         });
+
+        String s = pet.getName();
+
+
+        if (s == null) {
+            holder.name.setVisibility(View.INVISIBLE);
+        } else {
+            holder.name.setText(s);
+        }
 
     }
 
