@@ -28,7 +28,7 @@ public class PetListAdapter extends
         RecyclerView.Adapter<PetListAdapter.ViewHolder> {
 
 
-
+    int size;
     private List<Pet> mPets;
     private Context mContext;
 
@@ -86,21 +86,30 @@ public class PetListAdapter extends
                 .error(R.color.colorAccent)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)
-                .load(url)
-            .withBitmapInfo()
-            .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
-              @Override
-              public void onCompleted(Exception e, ImageViewBitmapInfo result) {
-                // Check for exceptions
+                .load(url);
+//            .withBitmapInfo()
+//            .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
+//              @Override
+//              public void onCompleted(Exception e, ImageViewBitmapInfo result) {
+//                // Check for exceptions
+//
+//                // Check bitmaps first
+////                      Bitmap b = result.getBitmapInfo().bitmap;
+////                      size = b.getByteCount();
+//                // most found images are: 307200KB
+//                // most error images are:  76800KB
+//                Log.d("IMAGE_SIZE", size + "KB " + url);
+//              }
+//            });
 
-                // Check bitmaps first
-                Bitmap b = result.getBitmapInfo().bitmap;
-                int size = b.getByteCount();
-                // most found images are: 307200KB
-                // most error images are:  76800KB
-                Log.d("IMAGE_SIZE", size + "KB " + url);
-              }
-            });
+//            if (size < 100000) {
+//                Ion.with(holder.photo)
+//                        .placeholder(R.color.colorPrimary)
+//                        .error(R.color.colorAccent)
+////                .animateLoad(spinAnimation)
+////                .animateIn(fadeInAnimation)
+//                        .load("http://eskipaper.com/images/dog-happy-cartoon-1.jpg");
+//            }
 
 //        if (pet.getName() != null) {
 
