@@ -71,7 +71,7 @@ public class SecondScreenActivity extends AppCompatActivity {
                 //set message, title, and icon
                 .setTitle("Search Pets")
                 .setMessage("Would you like to look for a dog or a cat?")
-                .setIcon(R.drawable.ic_adb)
+                .setIcon(R.drawable.icon_profile_sm)
 
                 .setPositiveButton("Cat", new DialogInterface.OnClickListener() {
 
@@ -103,7 +103,7 @@ public class SecondScreenActivity extends AppCompatActivity {
           //set message, title, and icon
           .setTitle("Found A Pet")
           .setMessage("Did you find a dog or a cat?")
-          .setIcon(R.drawable.ic_adb)
+          .setIcon(R.drawable.icon_profile_sm)
 
           .setPositiveButton("Cat", new DialogInterface.OnClickListener() {
 
