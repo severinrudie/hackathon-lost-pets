@@ -167,14 +167,26 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public List<Pet> searchWithinDb(String animalType, String query) {
-
-        String sql = "SELECT * FROM " + SC.TABLE_PETS + " WHERE " + SC.TYPE + " = '" + animalType
-                + "' AND " + SC.COLOR + " LIKE '%" + query
-                + "%' " + " OR " + SC.CITY + " LIKE '%" + query + "%' " + " OR " + SC.NAME
-                + " LIKE '%" + query + "%' " + " OR " + SC.GENDER + " LIKE '%" + query + "%' "
-                + " OR " + SC.BREED + " LIKE '%" + query + "%' " + " OR " + SC.ZIP
-                + " LIKE '%" + query + "%' " + " OR " + SC.MEMO + " LIKE '%" + query + "%' "
-                + " OR " + SC.LOCATION + " LIKE '%" + query + "%';";
+        String sql = "";
+        if (query.toUpperCase().contains("FEMALE")) {
+            // if query is male, search for gender not marked female
+            String gender = "Female";
+            sql = "SELECT * FROM " + SC.TABLE_PETS + " WHERE " + SC.TYPE + " = '" + animalType
+                    + "' AND " + SC.GENDER + " LIKE '%" + gender + "%';";
+        } else if (query.toUpperCase().contains("MALE")) {
+            // if query is marked female, search for gender marked female
+            String gender = "Female";
+            sql = "SELECT * FROM " + SC.TABLE_PETS + " WHERE " + SC.TYPE + " = '" + animalType
+                    + "' AND " + SC.GENDER + " NOT LIKE '%" + gender + "%';";
+        } else {
+            sql = "SELECT * FROM " + SC.TABLE_PETS + " WHERE " + SC.TYPE + " = '" + animalType
+                    + "' AND " + SC.COLOR + " LIKE '%" + query
+                    + "%' " + " OR " + SC.CITY + " LIKE '%" + query + "%' " + " OR " + SC.NAME
+                    + " LIKE '%" + query + "%' " + " OR " + SC.GENDER + " LIKE '" + query + "' "
+                    + " OR " + SC.BREED + " LIKE '%" + query + "%' " + " OR " + SC.ZIP
+                    + " LIKE '%" + query + "%' " + " OR " + SC.MEMO + " LIKE '%" + query + "%' "
+                    + " OR " + SC.LOCATION + " LIKE '%" + query + "%';";
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         List<Pet> pets = new ArrayList<>();

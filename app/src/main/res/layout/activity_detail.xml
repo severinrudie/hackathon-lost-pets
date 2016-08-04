@@ -184,7 +184,7 @@
         android:layout_width="match_parent"
         android:transitionName="@string/transitionButtonTwo"
         android:textSize="24sp"
-        android:id="@+id/lostAndFoundButton"
+        android:id="@+id/myPetButton"
         android:alpha="0.8"
         android:textColor="#fff"
         android:backgroundTint="@color/colorPrimary"
