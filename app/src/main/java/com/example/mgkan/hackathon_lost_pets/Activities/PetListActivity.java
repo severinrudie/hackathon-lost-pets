@@ -175,6 +175,7 @@ public class PetListActivity extends AppCompatActivity {
                         for (Pet pet : pets) {
                             helper.insertPetIntoDb(pet);
                         }
+                        pets = helper.getPetListFromDb(type);
                     }
                     helper.setSavedTime(System.currentTimeMillis());
                     UPDATE_DB = false;
@@ -232,6 +233,7 @@ public class PetListActivity extends AppCompatActivity {
             UPDATE_DB = true;
         }
     }
+
 
 }
 

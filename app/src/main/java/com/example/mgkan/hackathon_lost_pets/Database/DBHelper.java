@@ -170,6 +170,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return pets;
     }
 
+//    public List<Pet> searchWithinDb(String type, String query) {
+//
+//        String sql =
+//
+//    }
+
 
 
 }
