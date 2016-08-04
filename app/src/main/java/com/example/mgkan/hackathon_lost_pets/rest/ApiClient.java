@@ -7,9 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by mgkan on 2016-08-03.
  */
 public class ApiClient {
-  public static final String BASE_URL = "https://data.kingcounty.gov/resource/murn-chih.json";
+//  public static final String BASE_URL = "https://data.kingcounty.gov/resource/murn-chih.json/";
+public static final String BASE_URL = "https://data.kingcounty.gov/resource/";
   private static Retrofit retrofit = null;
-
 
   public static Retrofit getClient() {
     if (retrofit==null) {
