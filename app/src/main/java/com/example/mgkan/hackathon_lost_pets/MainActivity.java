@@ -52,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
           Log.d("SEVTEST: ", response.body().toString());
 
           Log.d("Brad TEST: ", "This Works!!!");
-          for (Pet doggy : response.body()) {
+          for (Pet pet : response.body()) {
 
-            Log.d("Brad's Dog: ", "=>" + doggy.getAddress());
+            Log.d("Brad's Dog: ", "=>" + pet.getAddress());
+            pets.add(pet);
           }
           //pets.addAll(response.body().getResults());
         }
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         // Log error here since request failed
 //        Log.e(TAG, t.toString());
         Log.d("SEVTEST: ", "Call response != 200 code");
+        t.printStackTrace();
       }
     });
 
