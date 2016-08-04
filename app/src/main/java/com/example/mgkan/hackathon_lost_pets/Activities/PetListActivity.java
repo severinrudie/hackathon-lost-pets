@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.Adapters.PetListAdapter;
+import com.example.mgkan.hackathon_lost_pets.Database.DBHelper;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.Model.PetResponse;
 import com.example.mgkan.hackathon_lost_pets.R;
@@ -109,7 +110,7 @@ public class PetListActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
 
-            populateWithSearchedFoundAnimal(rvPets,type,query);
+//            populateWithSearchedFoundAnimal(rvPets,type,query);
 
         }
 
@@ -160,10 +161,11 @@ public class PetListActivity extends AppCompatActivity {
                 int statusCode = response.code();
                 if (statusCode > 199 && statusCode < 300) {
 
-//                    for (Pet pet : response.body()) {
-//                        pets.add(pet);
-//                    }
                     pets = (response.body());
+                    DBHelper helper = DBHelper.getInstance(getBaseContext());
+                    for (Pet pet : pets) {
+                        helper.insertPetIntoDb(pet);
+                    }
                     PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
 
                     if (rvPets.getAdapter() == null) {
@@ -201,7 +203,7 @@ public class PetListActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                populateWithSearchedFoundAnimal(rvPets, type, newText);
+//                populateWithSearchedFoundAnimal(rvPets, type, newText);
                 return false;
             }
         });

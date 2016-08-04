@@ -26,10 +26,10 @@ public class SecondScreenActivity extends AppCompatActivity {
 
         // TODO: SEV db test code
         DBHelper helper = DBHelper.getInstance(this);
-        Pet pet = new Pet("a", "b", "c", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
+//        Pet pet = new Pet("a", "b", "c", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
         helper.dropAllTables();
         helper.createDbIfNotExists();
-        helper.insertPetIntoDb(pet);
+//        helper.insertPetIntoDb(pet);
         // TODO: SEV db test code
 
         mContext = this;
