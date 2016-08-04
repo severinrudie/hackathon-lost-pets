@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context mContext;
 
     private static final String DATABASE_NAME = "LOST_PETS_DB";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static DBHelper DB;
 
@@ -44,23 +44,19 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
       // TODO: do... stuff... here?
+      db.execSQL(SC.CREATE_TABLE_PETS);
+      db.execSQL(SC.CREATE_TABLE_TIME);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        dropAllTables();
+        dropAllTables(db);
         this.onCreate(db);
     }
 
-    public void createDbIfNotExists() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(SC.CREATE_TABLE_PETS);
-        db.execSQL(SC.CREATE_TABLE_TIME);
-    }
-
-    public void dropAllTables() {
-        SQLiteDatabase db = this.getWritableDatabase();
-            db.execSQL("DROP TABLE IF EXISTS " + SC.TABLE_PETS);
+    public void dropAllTables(SQLiteDatabase db) {
+      db.execSQL("DROP TABLE IF EXISTS " + SC.TABLE_PETS);
+      db.execSQL("DROP TABLE IF EXISTS " + SC.TABLE_TIME);
     }
 
     public long getSavedTime() {
