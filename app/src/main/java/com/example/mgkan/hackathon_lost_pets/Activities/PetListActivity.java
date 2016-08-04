@@ -2,13 +2,18 @@ package com.example.mgkan.hackathon_lost_pets.Activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.example.mgkan.hackathon_lost_pets.Adapters.PetListAdapter;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
@@ -49,6 +54,21 @@ public class PetListActivity extends AppCompatActivity {
         populateWithSearchedFoundAnimal(rvPets, CAT, "");
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
     }
 
     private static final int REQUEST_PERMISSIONS = 1;
@@ -115,25 +135,6 @@ public class PetListActivity extends AppCompatActivity {
     }
 
 
-//    private static final int REQUEST_PERMISSIONS = 1;
-//    private static String[] PERMISSIONS_INTERNET = {
-//            Manifest.permission.INTERNET,
-//    };
-//
-//    public static void verifyStoragePermissions(Activity activity) {
-//        // Check if we have write permission
-//        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET);
-//
-//        if (permission != PackageManager.PERMISSION_GRANTED) {
-//            // We don't have permission so prompt the user
-//            ActivityCompat.requestPermissions(
-//                    activity,
-//                    PERMISSIONS_INTERNET,
-//                    REQUEST_PERMISSIONS
-//            );
-//        }
-//    }
-//    }
 }
 
 
