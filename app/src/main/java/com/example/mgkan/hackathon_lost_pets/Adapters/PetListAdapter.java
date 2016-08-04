@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,30 +85,26 @@ public class PetListAdapter extends
                 .error(R.color.colorAccent)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)
-                .load(url);
-//            .withBitmapInfo()
-//            .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
-//              @Override
-//              public void onCompleted(Exception e, ImageViewBitmapInfo result) {
-//                // Check for exceptions
-//
-//                // Check bitmaps first
-////                      Bitmap b = result.getBitmapInfo().bitmap;
-////                      size = b.getByteCount();
-//                // most found images are: 307200KB
-//                // most error images are:  76800KB
-//                Log.d("IMAGE_SIZE", size + "KB " + url);
-//              }
-//            });
 
-//            if (size < 100000) {
-//                Ion.with(holder.photo)
-//                        .placeholder(R.color.colorPrimary)
-//                        .error(R.color.colorAccent)
-////                .animateLoad(spinAnimation)
-////                .animateIn(fadeInAnimation)
-//                        .load("http://eskipaper.com/images/dog-happy-cartoon-1.jpg");
-//            }
+                .load(url)
+            .withBitmapInfo()
+            .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
+              @Override
+              public void onCompleted(Exception e, ImageViewBitmapInfo result) {
+                // Check for exceptions
+
+                // Check bitmaps first
+                Bitmap b = result.getBitmapInfo().bitmap;
+                int size = b.getByteCount();
+
+                // most found images are: 307200KB
+                // most error images are:  76800KB
+                // Log.d("IMAGE_SIZE", size + "KB " + url);
+                if (size < 100000) {
+                  // replace not-found images with placeholder
+                }
+              }
+            });
 
 //        if (pet.getName() != null) {
 

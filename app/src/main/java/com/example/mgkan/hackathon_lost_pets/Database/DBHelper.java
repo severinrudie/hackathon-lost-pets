@@ -74,6 +74,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return 0;
     }
 
+    public void setSavedTime(long time) {
+        String sql = "DELETE FROM " + SC.TABLE_TIME + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);
+        sql =  "INSERT INTO " + SC.TABLE_TIME + " (" + SC.SAVED_TIME + ") Values (" + time + ");";
+        db.execSQL(sql);
+        System.out.println("");
+    }
+
 
 
     // This method returns the character ID of the inserted row after inserting character details
@@ -161,9 +170,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return pets;
     }
 
-//    public List<Pet> getAnimalFromDatabase(String animal) {
+//    public List<Pet> searchWithinDb(String type, String query) {
+//
 //        String sql =
+//
 //    }
+
 
 
 }
