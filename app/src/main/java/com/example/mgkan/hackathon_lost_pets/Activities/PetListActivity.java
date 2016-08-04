@@ -34,6 +34,8 @@ public class PetListActivity extends AppCompatActivity {
         rvPets.setAdapter(adapter);
         rvPets.setLayoutManager(new LinearLayoutManager(this));
     }
+
+
 }
 
 
