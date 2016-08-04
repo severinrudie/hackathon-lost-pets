@@ -226,10 +226,6 @@ public class PetListActivity extends AppCompatActivity {
                     }
                 }
 
-
-
-
-
                 searchView.clearFocus();
 
                 return true;

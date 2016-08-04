@@ -180,12 +180,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     + "' AND " + SC.GENDER + " NOT LIKE '%" + gender + "%';";
         } else {
             sql = "SELECT * FROM " + SC.TABLE_PETS + " WHERE " + SC.TYPE + " = '" + animalType
-                    + "' AND " + SC.COLOR + " LIKE '%" + query
+                    + "' AND (" + SC.COLOR + " LIKE '%" + query
                     + "%' " + " OR " + SC.CITY + " LIKE '%" + query + "%' " + " OR " + SC.NAME
                     + " LIKE '%" + query + "%' " + " OR " + SC.GENDER + " LIKE '" + query + "' "
                     + " OR " + SC.BREED + " LIKE '%" + query + "%' " + " OR " + SC.ZIP
                     + " LIKE '%" + query + "%' " + " OR " + SC.MEMO + " LIKE '%" + query + "%' "
-                    + " OR " + SC.LOCATION + " LIKE '%" + query + "%';";
+                    + " OR " + SC.LOCATION + " LIKE '%" + query + "%');";
         }
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
