@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.mgkan.hackathon_lost_pets.DetailActivity;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.R;
+import com.example.mgkan.hackathon_lost_pets.rest.NotFoundImageLoader;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.ImageViewBitmapInfo;
 import com.koushikdutta.ion.Ion;
@@ -41,13 +42,13 @@ public class PetListAdapter extends
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        CardView card;
-        ImageView photo;
-        TextView name;
-        TextView breed;
-        TextView date;
-        TextView gender;
-        View view;
+        public CardView card;
+        public ImageView photo;
+        public TextView name;
+        public TextView breed;
+        public TextView date;
+        public TextView gender;
+        public View view;
 
 
         public ViewHolder(View itemView) {
@@ -90,6 +91,7 @@ public class PetListAdapter extends
 
                 .load(url)
             .withBitmapInfo()
+
             .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
               @Override
               public void onCompleted(Exception e, ImageViewBitmapInfo result) {
@@ -112,15 +114,13 @@ public class PetListAdapter extends
                 }
               }
             });
+//            .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
 
 //        if (pet.getName() != null) {
 
               String[] splitDate = pet.getDate().split("-");
               splitDate[2]=splitDate[2].
-
-              split("T")[
-
-              0];
+              split("T")[0];
 
               String month = monthConstructor(splitDate[1]);
               String day = splitDate[2];

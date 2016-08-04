@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,12 +7,265 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mgkan.hackathon_lost_pets.PetInfoActivity">
+    android:orientation="vertical"
+    tools:context="com.example.mgkan.hackathon_lost_pets.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:text="PET INFO PAGE"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:transitionName="@string/transition_photo"
+            android:src="@drawable/puppy"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:textSize="50dp"
+            android:textColor="#fff"
+            android:background="#3000"
+            android:text="Tips and Info"
+            android:layout_gravity="bottom" />
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:card_view="http://schemas.android.com/tools"
+                card_view:contentPadding="0dp"
+                card_view:cardElevation="2dp"
+                card_view:cardCornerRadius="5dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="What to Do if You Lose Your Pet"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="by Petfinder (SUE STERNBERG)"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Get the word out:"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Make flyers"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="20dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Enlist neighbors help"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="20dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Contact or visit local animal shelters, vets, etc..."
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="20dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Read the full article"
+                        android:id="@+id/arcticle_one"
+                        android:textSize="20sp"
+                        android:textStyle="italic"
+                        android:textColor="#00f"
+                        android:paddingLeft="20dp"/>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:card_view="http://schemas.android.com/tools"
+                card_view:contentPadding="0dp"
+                card_view:cardElevation="2dp"
+                card_view:cardCornerRadius="5dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Keep Your Pet Safe (Lost Pet Prevention)"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="by Seattle Animal Shelter"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Secure your home: be careful when guests enter your home; secure your yard, double checking any fences that may have gaps or gates that get left open."
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Read the full article"
+                        android:textSize="20sp"
+                        android:textStyle="italic"
+                        android:id="@+id/article_two"
+                        android:textColor="#00f"
+                        android:paddingLeft="20dp"/>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:card_view="http://schemas.android.com/tools"
+                card_view:contentPadding="0dp"
+                card_view:cardElevation="2dp"
+                card_view:cardCornerRadius="5dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="The three largest shelters in the Seattle area are:"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Seattle Animal Shelter, 2061 15th Ave W, Seattle, WA 98119, seattleanimalshelter.org(206) 386-7387"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Regional Animal Service – King County (RASKC)
+500 4th Ave #403, Seattle, WA 98104
+kingcounty.gov
+(206) 296-7387"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Seattle Human Society (Bellevue)
+13212 SE Eastgate Way, Bellevue, WA 98005
+seattlehumane.org"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="See all shelter here"
+                        android:textSize="20sp"
+                        android:textStyle="italic"
+                        android:id="@+id/article_three"
+                        android:textColor="#00f"
+                        android:paddingLeft="20dp"/>
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
