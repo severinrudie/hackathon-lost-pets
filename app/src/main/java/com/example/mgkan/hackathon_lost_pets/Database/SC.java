@@ -29,9 +29,9 @@ public class SC {
     public static final String MEMO = "memo";
     public static final String LOCATION = "location";
 
-    public static final String create_table =
+    public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_PETS + " (" +
-                    ID + " text PRIMARY KEY AUTOINCREMENT, " +
+                    ID + " text, " +
                     TYPE + " text, " +
                     DATE + " text, " +
                     DATE_TYPE + " text, " +
@@ -40,11 +40,11 @@ public class SC {
                     IMAGE + " text, " +
                     NAME + " text, " +
                     GENDER + " text, " +
-                    BREED + " text " +
-                    LINK + " text " +
-                    ZIP + " integer " +
-                    ADDRESS + " text " +
-                    MEMO + " text " +
+                    BREED + " text, " +
+                    LINK + " text, " +
+                    ZIP + " integer, " +
+                    ADDRESS + " text, " +
+                    MEMO + " text, " +
                     LOCATION + " text " +
                     ");" +
                     "";

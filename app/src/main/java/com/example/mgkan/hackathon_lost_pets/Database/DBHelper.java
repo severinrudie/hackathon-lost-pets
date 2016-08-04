@@ -46,19 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        for (String string : SC.create_tables) {
-//            db.execSQL(string);
-//        }
-//        for (String[] sArray : SC.nodeDetails) {
-//            insertNodeDetails(sArray[0], sArray[1], sArray[2], sArray[3]);
-//        }
-//        for (ChoiceData data : SC.choiceDetails) {
-//            int[] i = data.getInts();
-//            insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7]);
-//        }
-//        for (String[] sArray : SC.popupDetails) {
-//            insertPopupDetails(sArray[0], sArray[1], sArray[2], sArray[3], sArray[4], sArray[5]);
-//        }
+      // TODO: do... stuff... here?
     }
 
     @Override
@@ -67,26 +55,17 @@ public class DBHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
+    public void createDbIfNotExists() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(SC.CREATE_TABLE);
+    }
+
     public void dropAllTables() {
         SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL("DROP TABLE IF EXISTS " + SC.TABLE_PETS);
     }
 
-//    this.animalId = animalId;
-//    this.animalType = animalType;
-//    this.date = date;
-//    this.dateType = dateType;
-//    this.color = color;
-//    this.image = image;
-//    this.city = city;
-//    this.name = name;
-//    this.animalGender = animalGender;
-//    this.animalBreed = animalBreed;
-//    this.link = link;
-//    this.zip = zip;
-//    this.address = address;
-//    this.memo = memo;
-//    this.currentLocation = currentLocation;
+
 
     // This method returns the character ID of the inserted row after inserting character details
     public void insertPetIntoDb(Pet pet) {

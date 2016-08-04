@@ -13,6 +13,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
+import com.example.mgkan.hackathon_lost_pets.Database.DBHelper;
+import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 
 
 public class SecondScreenActivity extends AppCompatActivity {
@@ -21,6 +23,14 @@ public class SecondScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_screen);
+
+        // TODO: SEV db test code
+        DBHelper helper = DBHelper.getInstance(this);
+        Pet pet = new Pet("a", "b", "c", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
+        helper.dropAllTables();
+        helper.createDbIfNotExists();
+        helper.insertPetIntoDb(pet);
+        // TODO: SEV db test code
 
         mContext = this;
 
