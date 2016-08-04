@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,9 +95,13 @@ public class PetListAdapter extends
                 // Check bitmaps first
                 Bitmap b = result.getBitmapInfo().bitmap;
                 int size = b.getByteCount();
+
                 // most found images are: 307200KB
                 // most error images are:  76800KB
-                Log.d("IMAGE_SIZE", size + "KB " + url);
+                // Log.d("IMAGE_SIZE", size + "KB " + url);
+                if (size < 100000) {
+                  // replace not-found images with placeholder
+                }
               }
             });
 
