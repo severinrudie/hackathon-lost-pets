@@ -2,5 +2,5 @@
     <dimen name="activity_horizontal_margin">0dp</dimen>
     <dimen name="activity_vertical_margin">0dp</dimen>
     <dimen name="list_item_text">14sp</dimen>
-    <dimen name="list_item_text_padding">4dp</dimen>
+    <dimen name="list_item_text_padding">8dp</dimen>
 </resources>
