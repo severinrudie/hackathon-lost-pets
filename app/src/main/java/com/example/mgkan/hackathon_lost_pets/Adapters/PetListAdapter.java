@@ -2,8 +2,10 @@ package com.example.mgkan.hackathon_lost_pets.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,12 @@ import com.example.mgkan.hackathon_lost_pets.DetailActivity;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.R;
 import com.example.mgkan.hackathon_lost_pets.rest.NotFoundImageLoader;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.ImageViewBitmapInfo;
 import com.koushikdutta.ion.Ion;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by erikrudie on 8/3/16.
@@ -86,7 +91,30 @@ public class PetListAdapter extends
 
                 .load(url)
             .withBitmapInfo()
-            .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
+
+            .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
+              @Override
+              public void onCompleted(Exception e, ImageViewBitmapInfo result) {
+                // Check for exceptions
+
+                  int size = 200000;
+                  // Check bitmaps first
+                  try {
+                      Bitmap b = result.getBitmapInfo().bitmap;
+                      size = b.getByteCount();
+                  } catch (NullPointerException f) {
+                      f.printStackTrace();
+                  }
+
+                // most found images are: 307200KB
+                // most error images are:  76800KB
+                // Log.d("IMAGE_SIZE", size + "KB " + url);
+                if (size < 100000) {
+                  // replace not-found images with placeholder
+                }
+              }
+            });
+//            .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
 
 //        if (pet.getName() != null) {
 
