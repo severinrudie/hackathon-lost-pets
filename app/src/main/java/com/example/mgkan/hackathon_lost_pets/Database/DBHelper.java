@@ -161,5 +161,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return pets;
     }
 
+//    public List<Pet> getAnimalFromDatabase(String animal) {
+//        String sql =
+//    }
+
 
 }
