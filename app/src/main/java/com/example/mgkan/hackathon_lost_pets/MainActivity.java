@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         petInfo.startAnimation(pushRight);
         lostAndFound.startAnimation(pushRight);
         startActivity(i);
+        overridePendingTransition(0, 0);
       }
 
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View view) {
         Intent i = new Intent(MainActivity.this, PetInfoActivity.class);
         startActivity(i);
-
+        overridePendingTransition(0, 0);
         Animation pushRight = AnimationUtils.loadAnimation(mContext, R.anim.push_out_right);
 
         petProfile.startAnimation(pushRight);
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View view) {
         Intent i = new Intent(MainActivity.this, PetProfileActivity.class);
         startActivity(i);
-
+        overridePendingTransition(0, 0);
         Animation pushRight = AnimationUtils.loadAnimation(mContext, R.anim.push_out_right);
 
         petProfile.startAnimation(pushRight);

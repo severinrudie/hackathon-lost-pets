@@ -37,8 +37,8 @@ public class SecondScreenActivity extends AppCompatActivity {
 
         mContext = this;
 
-        final View lostMyPet = (Button) findViewById(R.id.lostPetButton);
-        final View foundAPet = (Button) findViewById(R.id.foundPetButton);
+        final Button lostMyPet = (Button) findViewById(R.id.lostPetButton);
+        final Button foundAPet = (Button) findViewById(R.id.foundPetButton);
 
         Animation pullLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left_second);
         lostMyPet.startAnimation(pullLeft);
@@ -69,6 +69,7 @@ public class SecondScreenActivity extends AppCompatActivity {
         Animation pushLeft = AnimationUtils.loadAnimation(mContext, R.anim.push_out_left);
         lostMyPet.startAnimation(pushLeft);
         foundAPet.startAnimation(pushLeft);
+        overridePendingTransition(0, 0);
     }
     private AlertDialog AskOptionHome() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
