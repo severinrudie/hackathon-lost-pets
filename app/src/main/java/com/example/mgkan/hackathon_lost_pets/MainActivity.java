@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     String apiToken = "GAuG06jfO7zdOLS1s0OktESQU";
 
-    Call<List<Pet>> call = apiService.getPets(apiToken, "Dog", "date DESC");
+    Call<List<Pet>> call = apiService.getPets(apiToken, "FOUND", "Dog", "date DESC");
 
     Log.d("Url: ", call.request().url().toString());
 

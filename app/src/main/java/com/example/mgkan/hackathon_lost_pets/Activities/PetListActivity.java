@@ -30,6 +30,9 @@ public class PetListActivity extends AppCompatActivity {
     private final static String sort = "date DESC";
     List<Pet> pets;
 
+    public final String DOG = "Dog";
+    public final String CAT = "Cat";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +42,70 @@ public class PetListActivity extends AppCompatActivity {
 
         final RecyclerView rvPets = (RecyclerView) findViewById(R.id.recyclerView_petList_petListActivity);
 
+        populateWithFoundAnimal(rvPets, CAT);
+
+//        ApiInterface apiService =
+//                ApiClient.getClient().create(ApiInterface.class);
+
+//        String apiToken = "GAuG06jfO7zdOLS1s0OktESQU";
+//
+//        Call<List<Pet>> call = apiService.getPets(apiToken, "Dog", "FOUND", "date DESC");
+//
+//        pets = new ArrayList<>();
+//
+//        call.enqueue(new Callback<List<Pet>>() {
+//            @Override
+//            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+//
+//                int statusCode = response.code();
+//                if (statusCode > 199 && statusCode < 300) {
+//
+//                    for (Pet pet : response.body()) {
+//                        pets.add(pet);
+//                    }
+//                    pets.addAll(response.body());
+//                    PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
+//                    rvPets.setAdapter(adapter);
+//                    rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Pet>> call, Throwable t) {
+//                Log.d("SEVTEST: ", "Call response != 200 code");
+//                t.printStackTrace();
+//            }
+//        });
+
+    }
+
+    private static final int REQUEST_PERMISSIONS = 1;
+    private static String[] PERMISSIONS_INTERNET = {
+            Manifest.permission.INTERNET,
+    };
+
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_INTERNET,
+                    REQUEST_PERMISSIONS
+            );
+        }
+    }
+
+
+    public void populateWithFoundAnimal(final RecyclerView rvPets, String animal) {
+        String apiToken = "GAuG06jfO7zdOLS1s0OktESQU";
+
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        String apiToken = "GAuG06jfO7zdOLS1s0OktESQU";
-
-        Call<List<Pet>> call = apiService.getPets(apiToken, "Dog", "date DESC");
+        Call<List<Pet>> call = apiService.getPets(apiToken, animal, "FOUND", "date DESC");
 
         pets = new ArrayList<>();
 
@@ -71,26 +132,6 @@ public class PetListActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
-
-    }
-
-    private static final int REQUEST_PERMISSIONS = 1;
-    private static String[] PERMISSIONS_INTERNET = {
-            Manifest.permission.INTERNET,
-    };
-
-    public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_INTERNET,
-                    REQUEST_PERMISSIONS
-            );
-        }
     }
 
 //    private static final int REQUEST_PERMISSIONS = 1;
