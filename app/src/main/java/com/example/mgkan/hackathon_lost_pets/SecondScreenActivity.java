@@ -22,7 +22,7 @@ public class SecondScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_screen);
+        setContentView(R.layout.activity_second_like_main);
 
         // TODO: SEV db test code
         DBHelper helper = DBHelper.getInstance(this);
@@ -37,10 +37,9 @@ public class SecondScreenActivity extends AppCompatActivity {
         final View lostMyPet = (Button) findViewById(R.id.lostPetButton);
         final View foundAPet = (Button) findViewById(R.id.foundPetButton);
 
-        Animation inLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left_second);
-        Animation inRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right_second);
-        lostMyPet.startAnimation(inRight);
-        foundAPet.startAnimation(inLeft);
+        Animation pullLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left_second);
+        lostMyPet.startAnimation(pullLeft);
+        foundAPet.startAnimation(pullLeft);
 
         lostMyPet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +57,15 @@ public class SecondScreenActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        final View lostMyPet = (Button) findViewById(R.id.lostPetButton);
+        final View foundAPet = (Button) findViewById(R.id.foundPetButton);
+        Animation pushLeft = AnimationUtils.loadAnimation(mContext, R.anim.push_out_left);
+        lostMyPet.startAnimation(pushLeft);
+        foundAPet.startAnimation(pushLeft);
     }
     private AlertDialog AskOptionHome() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
