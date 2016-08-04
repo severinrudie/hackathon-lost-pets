@@ -2,7 +2,6 @@ package com.example.mgkan.hackathon_lost_pets.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +13,7 @@ import android.widget.TextView;
 import com.example.mgkan.hackathon_lost_pets.DetailActivity;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.R;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.ImageViewBitmapInfo;
+import com.example.mgkan.hackathon_lost_pets.rest.NotFoundImageLoader;
 import com.koushikdutta.ion.Ion;
 
 import java.util.List;
@@ -39,13 +37,13 @@ public class PetListAdapter extends
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        CardView card;
-        ImageView photo;
-        TextView name;
-        TextView breed;
-        TextView date;
-        TextView gender;
-        View view;
+        public CardView card;
+        public ImageView photo;
+        public TextView name;
+        public TextView breed;
+        public TextView date;
+        public TextView gender;
+        public View view;
 
 
         public ViewHolder(View itemView) {
@@ -88,32 +86,13 @@ public class PetListAdapter extends
 
                 .load(url)
             .withBitmapInfo()
-            .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
-              @Override
-              public void onCompleted(Exception e, ImageViewBitmapInfo result) {
-                // Check for exceptions
-
-                // Check bitmaps first
-                Bitmap b = result.getBitmapInfo().bitmap;
-                int size = b.getByteCount();
-
-                // most found images are: 307200KB
-                // most error images are:  76800KB
-                // Log.d("IMAGE_SIZE", size + "KB " + url);
-                if (size < 100000) {
-                  // replace not-found images with placeholder
-                }
-              }
-            });
+            .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
 
 //        if (pet.getName() != null) {
 
               String[] splitDate = pet.getDate().split("-");
               splitDate[2]=splitDate[2].
-
-              split("T")[
-
-              0];
+              split("T")[0];
 
               String month = monthConstructor(splitDate[1]);
               String day = splitDate[2];

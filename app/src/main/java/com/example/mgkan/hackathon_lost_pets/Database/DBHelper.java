@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context mContext;
 
     private static final String DATABASE_NAME = "LOST_PETS_DB";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static DBHelper DB;
 
@@ -44,23 +44,19 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
       // TODO: do... stuff... here?
+      db.execSQL(SC.CREATE_TABLE_PETS);
+      db.execSQL(SC.CREATE_TABLE_TIME);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        dropAllTables();
+        dropAllTables(db);
         this.onCreate(db);
     }
 
-    public void createDbIfNotExists() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(SC.CREATE_TABLE_PETS);
-        db.execSQL(SC.CREATE_TABLE_TIME);
-    }
-
-    public void dropAllTables() {
-        SQLiteDatabase db = this.getWritableDatabase();
-            db.execSQL("DROP TABLE IF EXISTS " + SC.TABLE_PETS);
+    public void dropAllTables(SQLiteDatabase db) {
+      db.execSQL("DROP TABLE IF EXISTS " + SC.TABLE_PETS);
+      db.execSQL("DROP TABLE IF EXISTS " + SC.TABLE_TIME);
     }
 
     public long getSavedTime() {
@@ -170,11 +166,44 @@ public class DBHelper extends SQLiteOpenHelper {
         return pets;
     }
 
-//    public List<Pet> searchWithinDb(String type, String query) {
-//
-//        String sql =
-//
-//    }
+    public List<Pet> searchWithinDb(String animalType, String query) {
+
+        String sql = "SELECT * FROM " + SC.TABLE_PETS + " WHERE " + SC.TYPE + " = '" + animalType
+                + "' AND " + SC.COLOR + " LIKE '%" + query
+                + "%' " + " OR " + SC.CITY + " LIKE '%" + query + "%' " + " OR " + SC.NAME
+                + " LIKE '%" + query + "%' " + " OR " + SC.GENDER + " LIKE '%" + query + "%' "
+                + " OR " + SC.BREED + " LIKE '%" + query + "%' " + " OR " + SC.ZIP
+                + " LIKE '%" + query + "%' " + " OR " + SC.MEMO + " LIKE '%" + query + "%' "
+                + " OR " + SC.LOCATION + " LIKE '%" + query + "%';";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        List<Pet> pets = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String id = cursor.getString(cursor.getColumnIndexOrThrow(SC.ID));
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(SC.TYPE));
+            String date = cursor.getString(cursor.getColumnIndexOrThrow(SC.DATE));
+            String dateType = cursor.getString(cursor.getColumnIndexOrThrow(SC.DATE_TYPE));
+            String color = cursor.getString(cursor.getColumnIndexOrThrow(SC.COLOR));
+            String image = cursor.getString(cursor.getColumnIndexOrThrow(SC.IMAGE));
+            String city = cursor.getString(cursor.getColumnIndexOrThrow(SC.CITY));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(SC.NAME));
+            String gender = cursor.getString(cursor.getColumnIndexOrThrow(SC.GENDER));
+            String breed = cursor.getString(cursor.getColumnIndexOrThrow(SC.BREED));
+            String link = cursor.getString(cursor.getColumnIndexOrThrow(SC.LINK));
+            int zip = cursor.getInt(cursor.getColumnIndexOrThrow(SC.ZIP));
+            String address = cursor.getString(cursor.getColumnIndexOrThrow(SC.ADDRESS));
+            String memo = cursor.getString(cursor.getColumnIndexOrThrow(SC.MEMO));
+            String location = cursor.getString(cursor.getColumnIndexOrThrow(SC.LOCATION));
+            pets.add(new Pet(id, type, date, dateType, color, image, city, name, gender, breed, link, zip
+                    , address, memo, location));
+            cursor.moveToNext();
+        }
+        return pets;
+    }
+
+
+//    SELECT * FROM table_pets WHERE memo LIKE '%domesticated bunny%' OR city LIKE '%sho%' LIMIT 10;
 
 
 

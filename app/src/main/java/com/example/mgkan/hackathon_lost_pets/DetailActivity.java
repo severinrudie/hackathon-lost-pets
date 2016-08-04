@@ -1,5 +1,6 @@
 package com.example.mgkan.hackathon_lost_pets;
 
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -7,18 +8,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
+import com.example.mgkan.hackathon_lost_pets.rest.NotFoundImageLoader;
 import com.koushikdutta.ion.Ion;
 
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
-
 public class DetailActivity extends AppCompatActivity {
     public String address,animalId;
     public HashMap<String,String> phoneNumber = new HashMap<>();
@@ -38,15 +39,16 @@ public class DetailActivity extends AppCompatActivity {
 
         String url = pet.getImage();
 
-        Ion.with(photo)
-                .placeholder(R.color.colorPrimary)
-                .error(R.color.colorAccent)
+      Ion.with(photo)
+          .placeholder(R.color.colorPrimary)
+          .error(R.color.colorAccent)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)
-                .load(url);
+          .load(url)
+          .withBitmapInfo()
+          .setCallback(NotFoundImageLoader.handleNotFound(photo, this));
 
-
-        String[] splitDate = pet.getDate().split("-");
+      String[] splitDate = pet.getDate().split("-");
         splitDate[2] = splitDate[2].split("T")[0];
 
         String month = monthConstructor(splitDate[1]);

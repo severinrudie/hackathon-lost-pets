@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Find My Pet</string>
-    <string name="search_name">Refine Search Here</string>
+    <string name="search_name">Refine Search Here >>>></string>
     <string name="transition_photo">photo_transition</string>
     <string name="transitionButtonOne">transition_button_one</string>
     <string name="transitionButtonTwo">transition_button_two</string>

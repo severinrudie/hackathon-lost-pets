@@ -209,7 +209,23 @@ public class PetListActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                populateWithSearchedFoundAnimal(rvPets, type, query);
+                DBHelper helper = DBHelper.getInstance(getBaseContext());
+                List<Pet> possiblyPets = helper.searchWithinDb(type, query);
+                if (possiblyPets.size() > 0) {
+                    pets = possiblyPets;
+                    PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
+                    if (rvPets.getAdapter() == null) {
+                        rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
+                        rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    } else {
+                        rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+                    }
+                }
+
+
+
+
+
                 searchView.clearFocus();
 
                 return true;
