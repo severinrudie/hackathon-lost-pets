@@ -35,12 +35,9 @@ public class MainActivity extends AppCompatActivity {
     lostAndFound.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-          Intent i = new Intent(MainActivity.this, SecondScreenActivity.class);
+        Intent i = new Intent(MainActivity.this, SecondScreenActivity.class);
 
-          Pair<View, String> pair1 = Pair.create(kitty, kitty.getTransitionName());
-//          Pair<View, String> pair2 = Pair.create(petProfile, petProfile.getTransitionName());
-//          Pair<View, String> pair3 = Pair.create(lostAndFound, lostAndFound.getTransitionName());
-//          Pair<View, String> pair4 = Pair.create(petInfo, petInfo.getTransitionName());
+        Pair<View, String> pair1 = Pair.create(kitty, kitty.getTransitionName());
         Animation outLeft = AnimationUtils.loadAnimation(mContext, R.anim.push_out_left);
         Animation outRight = AnimationUtils.loadAnimation(mContext, R.anim.push_out_right);
         Animation pushDown = AnimationUtils.loadAnimation(mContext, R.anim.push_out_down);
