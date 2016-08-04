@@ -100,6 +100,18 @@ public class PetListAdapter extends
 
         String month = monthConstructor(splitDate[1]);
         String day = splitDate[2];
+        if (day.charAt(0)=='0') {
+            day = day.substring(1);
+        }
+//        String suffix = "th";
+//        if (day.charAt(day.length()-1) == '1') {
+//            suffix = "st";
+//        } else if (day.charAt(day.length()-1) == '2') {
+//            suffix="nd";
+//        } else if (day.charAt(day.length()-1) == '3') {
+//            suffix="rd";
+//        }
+
         String year = splitDate[0];
         String formattedDate = month + " " + day + ", " + year;
 
