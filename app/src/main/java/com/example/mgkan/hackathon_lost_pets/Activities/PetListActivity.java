@@ -46,40 +46,8 @@ public class PetListActivity extends AppCompatActivity {
 
         final RecyclerView rvPets = (RecyclerView) findViewById(R.id.recyclerView_petList_petListActivity);
 
-        populateWithFoundAnimal(rvPets, CAT);
+        populateWithSearchedFoundAnimal(rvPets, CAT, "");
 
-//        ApiInterface apiService =
-//                ApiClient.getClient().create(ApiInterface.class);
-
-//        String apiToken = "GAuG06jfO7zdOLS1s0OktESQU";
-//
-//        Call<List<Pet>> call = apiService.getPets(apiToken, "Dog", "FOUND", "date DESC");
-//
-//        pets = new ArrayList<>();
-//
-//        call.enqueue(new Callback<List<Pet>>() {
-//            @Override
-//            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-//
-//                int statusCode = response.code();
-//                if (statusCode > 199 && statusCode < 300) {
-//
-//                    for (Pet pet : response.body()) {
-//                        pets.add(pet);
-//                    }
-//                    pets.addAll(response.body());
-//                    PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
-//                    rvPets.setAdapter(adapter);
-//                    rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Pet>> call, Throwable t) {
-//                Log.d("SEVTEST: ", "Call response != 200 code");
-//                t.printStackTrace();
-//            }
-//        });
 
     }
 
@@ -102,14 +70,22 @@ public class PetListActivity extends AppCompatActivity {
         }
     }
 
+    private String generalizeSearchString(String search) {
+        return "like '%25" + search + "%25'";
+    }
 
-    public void populateWithFoundAnimal(final RecyclerView rvPets, String animal) {
+    public void populateWithSearchedFoundAnimal(final RecyclerView rvPets, String animal, String search) {
         String apiToken = "GAuG06jfO7zdOLS1s0OktESQU";
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
+        if (search.trim().equals("")){
+            search = animal;
+        } else {
+            search = generalizeSearchString(search);
+        }
 
-        Call<List<Pet>> call = apiService.getPets(apiToken, animal, "FOUND", "date DESC");
+        Call<List<Pet>> call = apiService.getPetsWithSearch(apiToken, animal, "FOUND", "date DESC", search);
 
         pets = new ArrayList<>();
 
@@ -137,6 +113,7 @@ public class PetListActivity extends AppCompatActivity {
             }
         });
     }
+
 
 //    private static final int REQUEST_PERMISSIONS = 1;
 //    private static String[] PERMISSIONS_INTERNET = {
