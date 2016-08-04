@@ -1,10 +1,14 @@
 package com.example.mgkan.hackathon_lost_pets.Adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.support.v7.widget.CardView;
 
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.R;
@@ -17,19 +21,6 @@ import java.util.List;
 public class PetListAdapter extends
         RecyclerView.Adapter<PetListAdapter.ViewHolder> {
 
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-//   DEFINE VIEWS
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-//            INSTANTIATE VIEWS, ADD TO VIEWHOLDER
-
-        }
-    }
 
 
     private List<Pet> mPets;
@@ -38,6 +29,32 @@ public class PetListAdapter extends
     public PetListAdapter(Context context, List<Pet> pets) {
         mPets = pets;
         mContext = context;
+    }
+
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        CardView card;
+        ImageView photo;
+        TextView name;
+        TextView breed;
+        TextView date;
+        TextView gender;
+        View view;
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            card = (CardView) itemView.findViewById(R.id.list_item_card);
+            photo = (ImageView) itemView.findViewById(R.id.list_item_image);
+            name = (TextView) itemView.findViewById(R.id.list_item_name);
+            breed = (TextView) itemView.findViewById(R.id.list_item_breed);
+            date = (TextView) itemView.findViewById(R.id.list_item_date);
+            gender = (TextView) itemView.findViewById(R.id.list_item_gender);
+
+            view = itemView;
+
+        }
     }
 
     private Context getContext() {
@@ -49,7 +66,6 @@ public class PetListAdapter extends
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-//        TODO: update layout with new xml
         View contactView = inflater.inflate(R.layout.list_item, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(contactView);
@@ -60,6 +76,9 @@ public class PetListAdapter extends
     public void onBindViewHolder(PetListAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         Pet pet = mPets.get(position);
+
+
+
 
         // TODO: set view contents
     }
