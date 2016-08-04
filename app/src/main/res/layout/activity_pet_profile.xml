@@ -214,7 +214,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/list_item_text_big"
                 android:textColor="@color/text_color"
-                android:text="Heart - shaped spot on his rear"
+                android:text="Heart-shaped spot on his rear"
                 android:paddingLeft="@dimen/list_item_text_padding"/>
 
 
