@@ -3,7 +3,7 @@ package com.example.mgkan.hackathon_lost_pets.Model;
 /**
  * Created by erikrudie on 8/3/16.
  */
-public class ListPet {
+public class Pet {
 
 
     String animalId;  // animal_id  | the ID contains some letters
@@ -18,10 +18,14 @@ public class ListPet {
     String city;  // location_for_map_city |
     String name;  // animal_name
     String animalGender;  // animal_gender | 'Female' 'Male'
+    String link; // TODO: use URLEncoder and URLDecoder to maintain special characters
+    int zip;  // zip
+    String address;  // location_for_map_address |
+    String memo;  //  memo | String broken up by <p></p>
 
-    public ListPet(String animalId, String animalType, String date, String dateType, String color,
-                   String age, String image, String city, String name, String animalGender,
-                   String animalBreed) {
+    public Pet(String animalId, String animalType, String date, String dateType, String color,
+               String image, String city, String name, String animalGender,
+               String animalBreed, String link, int zip, String address, String memo) {
         this.animalId = animalId;
 //        this.coordinates = coordinates;
         this.animalType = animalType;
@@ -33,5 +37,9 @@ public class ListPet {
         this.name = name;
         this.animalGender = animalGender;
         this.animalBreed = animalBreed;
+        this.link = link;
+        this.zip = zip;
+        this.address = address;
+        this.memo = memo;
     }
 }
