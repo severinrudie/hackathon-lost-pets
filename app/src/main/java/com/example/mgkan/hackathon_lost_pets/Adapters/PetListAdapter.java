@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.support.v7.widget.CardView;
 import android.widget.Toast;
 
+import com.example.mgkan.hackathon_lost_pets.DetailActivity;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.R;
 import com.koushikdutta.ion.Ion;
@@ -80,7 +81,7 @@ public class PetListAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(final PetListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final PetListAdapter.ViewHolder holder, final int position) {
         Pet pet = mPets.get(position);
 
         String url = pet.getImage();
@@ -114,17 +115,15 @@ public class PetListAdapter extends
         holder.date.setText(formattedDate);
         holder.gender.setText(pet.getAnimalGender());
 
-        final String id = pet.getAnimalId();
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(getContext(),TODO: DETAIL VIEW ACTIVITY NAME);
-//
-//                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                i.putExtra("id",id);
-//                mContext.startActivity(i);
-                Toast.makeText(mContext, "Pet with id: "+id+" has been pressed!", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getContext(), DetailActivity.class);
+
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("POS",position);
+                mContext.startActivity(i);
             }
         });
 

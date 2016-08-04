@@ -39,7 +39,7 @@ import retrofit2.Response;
 public class PetListActivity extends AppCompatActivity {
     private final static String API_KEY = "GAuG06jfO7zdOLS1s0OktESQU";
     private final static String sort = "date DESC";
-    List<Pet> pets;
+    static List<Pet> pets;
 
     public static final String DOG = "Dog";
     public static final String CAT = "Cat";

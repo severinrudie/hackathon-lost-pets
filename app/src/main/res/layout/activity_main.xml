@@ -58,7 +58,7 @@
             android:id="@+id/petProfileButton"
             android:textColor="#273d21"
             android:textAllCaps="false"
-            android:text="Pet Profile"/>
+            android:text="My Pet Profile"/>
 
         <Button
             android:layout_width="match_parent"
@@ -89,7 +89,7 @@
             android:id="@+id/petInfoButton"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center_horizontal"
-            android:text="Pet Info"/>
+            android:text="Additional Info"/>
 
     </LinearLayout>
 
