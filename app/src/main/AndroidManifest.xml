@@ -17,15 +17,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".Activities.PetListActivity">
-
             <action android:name="android.intent.action.SEARCH" />
-
         </activity>
         <activity android:name=".SecondScreenActivity" />
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".PetInfoActivity" />
+        <activity android:name=".PetProfileActivity"></activity>
     </application>
 
 </manifest>

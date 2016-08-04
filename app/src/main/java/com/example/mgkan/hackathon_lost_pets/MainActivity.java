@@ -55,6 +55,40 @@ public class MainActivity extends AppCompatActivity {
 
     });
 
+    petInfo.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent i = new Intent(MainActivity.this, PetInfoActivity.class);
+        startActivity(i);
+
+        Animation outLeft = AnimationUtils.loadAnimation(mContext, R.anim.push_out_left);
+        Animation outRight = AnimationUtils.loadAnimation(mContext, R.anim.push_out_right);
+        Animation pushDown = AnimationUtils.loadAnimation(mContext, R.anim.push_out_down);
+
+        title.startAnimation(pushDown);
+        petProfile.startAnimation(outLeft);
+        petInfo.startAnimation(outLeft);
+        lostAndFound.startAnimation(outRight);
+      }
+    });
+
+    petProfile.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent i = new Intent(MainActivity.this, PetProfileActivity.class);
+        startActivity(i);
+
+        Animation outLeft = AnimationUtils.loadAnimation(mContext, R.anim.push_out_left);
+        Animation outRight = AnimationUtils.loadAnimation(mContext, R.anim.push_out_right);
+        Animation pushDown = AnimationUtils.loadAnimation(mContext, R.anim.push_out_down);
+
+        title.startAnimation(pushDown);
+        petProfile.startAnimation(outLeft);
+        petInfo.startAnimation(outLeft);
+        lostAndFound.startAnimation(outRight);
+      }
+    });
+
   }
   @Override
   public void onResume() {
