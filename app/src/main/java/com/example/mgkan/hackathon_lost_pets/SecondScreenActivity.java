@@ -16,6 +16,8 @@ import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
 import com.example.mgkan.hackathon_lost_pets.Database.DBHelper;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 
+import java.util.List;
+
 
 public class SecondScreenActivity extends AppCompatActivity {
     private Context mContext;
@@ -29,6 +31,7 @@ public class SecondScreenActivity extends AppCompatActivity {
 //        Pet pet = new Pet("a", "b", "c", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
         helper.dropAllTables();
         helper.createDbIfNotExists();
+        List<Pet> pets = helper.getPetListFromDb();
 //        helper.insertPetIntoDb(pet);
         // TODO: SEV db test code
 
