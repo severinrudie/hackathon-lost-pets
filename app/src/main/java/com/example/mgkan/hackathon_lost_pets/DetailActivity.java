@@ -81,7 +81,7 @@ public class DetailActivity extends AppCompatActivity {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
           //set message, title, and icon
           .setTitle("Let's get your pet back!")
-          .setMessage("These are what you need to retrieve your pet.\n"
+          .setMessage("Info you need to retrieve your pet.\n"
             + "Address: "+ address+"\n"
             + "Phone: "+ phoneNumber.get(address)+"\n"
             + "Animal ID: "+ animalId)
