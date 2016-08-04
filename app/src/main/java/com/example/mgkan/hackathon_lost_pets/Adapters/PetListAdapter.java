@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.koushikdutta.ion.ImageViewBitmapInfo;
 import com.koushikdutta.ion.Ion;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by erikrudie on 8/3/16.
@@ -93,9 +95,14 @@ public class PetListAdapter extends
               public void onCompleted(Exception e, ImageViewBitmapInfo result) {
                 // Check for exceptions
 
-                // Check bitmaps first
-                Bitmap b = result.getBitmapInfo().bitmap;
-                int size = b.getByteCount();
+                  int size = 200000;
+                  // Check bitmaps first
+                  try {
+                      Bitmap b = result.getBitmapInfo().bitmap;
+                      size = b.getByteCount();
+                  } catch (NullPointerException f) {
+                      f.printStackTrace();
+                  }
 
                 // most found images are: 307200KB
                 // most error images are:  76800KB
