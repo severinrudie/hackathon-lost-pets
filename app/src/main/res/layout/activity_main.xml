@@ -92,7 +92,7 @@
             android:id="@+id/petInfoButton"
             android:layout_marginBottom="30dp"
             android:layout_gravity="center_horizontal"
-            android:text="Additional Info"/>
+            android:text="Tips and Info"/>
 
     </LinearLayout>
 
