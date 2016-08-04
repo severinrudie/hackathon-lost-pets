@@ -103,25 +103,24 @@ public class PetListAdapter extends
         if (day.charAt(0)=='0') {
             day = day.substring(1);
         }
-//        String suffix = "th";
-//        if (day.charAt(day.length()-1) == '1') {
-//            suffix = "st";
-//        } else if (day.charAt(day.length()-1) == '2') {
-//            suffix="nd";
-//        } else if (day.charAt(day.length()-1) == '3') {
-//            suffix="rd";
-//        }
+
 
         String year = splitDate[0];
         String formattedDate = month + " " + day + ", " + year;
 
-//        for (String bit : splitDate) {
-//            Log.d("SEVTEST ", "Chunk: " + bit);
-//        }
 
         holder.breed.setText(pet.getAnimalBreed());
         holder.date.setText(formattedDate);
         holder.gender.setText(pet.getAnimalGender());
+
+        String s = pet.getName();
+
+
+        if (s.equals("null")) {
+            holder.name.setVisibility(View.GONE);
+        } else {
+            holder.name.setText(s);
+        }
 
 
         holder.view.setOnClickListener(new View.OnClickListener() {
@@ -135,14 +134,7 @@ public class PetListAdapter extends
             }
         });
 
-        String s = pet.getName();
 
-
-        if (s == null) {
-            holder.name.setVisibility(View.INVISIBLE);
-        } else {
-            holder.name.setText(s);
-        }
 
     }
 
