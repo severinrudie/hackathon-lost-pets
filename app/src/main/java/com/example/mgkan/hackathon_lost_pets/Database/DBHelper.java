@@ -99,8 +99,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public String cleanTextForDb(String string) {
-        string = string.replace("'", "''");
-        string = string.replace("\"", "\\\"");
+        if (string != null) {
+            string = string.replace("'", "''");
+            string = string.replace("\"", "\\\"");
+        }
         return string;
     }
 
