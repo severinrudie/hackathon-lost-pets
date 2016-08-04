@@ -127,8 +127,9 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
 
+        int count = 0;
         List<Pet> pets = new ArrayList<>();
-        while (!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast() && count < 50) {
             String id = cursor.getString(cursor.getColumnIndexOrThrow(SC.ID));
             String type = cursor.getString(cursor.getColumnIndexOrThrow(SC.TYPE));
             String date = cursor.getString(cursor.getColumnIndexOrThrow(SC.DATE));
@@ -146,7 +147,10 @@ public class DBHelper extends SQLiteOpenHelper {
             String location = cursor.getString(cursor.getColumnIndexOrThrow(SC.LOCATION));
             pets.add(new Pet(id, type, date, dateType, color, image, city, name, gender, breed, link, zip
             , address, memo, location));
+//            count++;
+            cursor.moveToNext();
         }
+        cursor.close();
         return pets;
     }
 
