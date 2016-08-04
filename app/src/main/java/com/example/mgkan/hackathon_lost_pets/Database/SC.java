@@ -11,6 +11,9 @@ public class SC {
         // all variables are static
     }
 
+    public static final String CAT = "Cat";
+    public static final String DOG = "Dog";
+
     public static final String TABLE_PETS = "table_pets";
 
     public static final String ID = "animalId";
@@ -28,6 +31,7 @@ public class SC {
     public static final String ADDRESS = "address";
     public static final String MEMO = "memo";
     public static final String LOCATION = "location";
+    public static final String DAY_INT = "day_int";
 
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_PETS + " (" +
@@ -45,6 +49,7 @@ public class SC {
                     ZIP + " integer, " +
                     ADDRESS + " text, " +
                     MEMO + " text, " +
+                    DAY_INT + " integer, " +
                     LOCATION + " text " +
                     ");" +
                     "";

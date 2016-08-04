@@ -85,14 +85,15 @@ public class DBHelper extends SQLiteOpenHelper {
         String address = cleanTextForDb(pet.getAddress());
         String memo = cleanTextForDb(pet.getMemo());
         String location = cleanTextForDb(pet.getCurrentLocation());
+        int dayInt = pet.getDayInt();
 
         String sql = "INSERT INTO " + SC.TABLE_PETS + " (" + SC.ID + ", " + SC.TYPE + ", " + SC.DATE + ", "
                 + SC.DATE_TYPE + ", " + SC.COLOR + ", " + SC.IMAGE + ", " + SC.CITY + ", " + SC.NAME + ", "
                 + SC.GENDER + ", " + SC.BREED + ", " + SC.LINK + ", " + SC.ZIP + ", " + SC.ADDRESS + ", "
-                + SC.MEMO + ", " + SC.LOCATION + ") VALUES ('" + id + "', '" + type + "', '"
+                + SC.MEMO + ", " + SC.LOCATION + ", " + SC.DAY_INT + ") VALUES ('" + id + "', '" + type + "', '"
                 + date + "', '" + dateType + "', '" + color + "', '"  + image + "', '" + city + "', '"
                 + name + "', '" + gender + "', '" + breed + "', '" + link + "', '" + zip + "', '"
-                + address + "', '" + memo + "', '" + location + "');";
+                + address + "', '" + memo + "', '" + location + ", " + dayInt + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
@@ -121,8 +122,8 @@ public class DBHelper extends SQLiteOpenHelper {
 //    public static final String ADDRESS = "address";
 //    public static final String MEMO = "memo";
 //    public static final String LOCATION = "location";
-    public List<Pet> getPetListFromDb() {
-        String sql = "SELECT * FROM " + SC.TABLE_PETS +";";
+    public List<Pet> getPetListFromDb(String dogCat) {
+        String sql = "SELECT * FROM " + SC.TABLE_PETS +" WHERE " + SC.TYPE + " = '" + dogCat +"';";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
@@ -146,6 +147,7 @@ public class DBHelper extends SQLiteOpenHelper {
             String location = cursor.getString(cursor.getColumnIndexOrThrow(SC.LOCATION));
             pets.add(new Pet(id, type, date, dateType, color, image, city, name, gender, breed, link, zip
             , address, memo, location));
+            cursor.moveToNext();
         }
         return pets;
     }

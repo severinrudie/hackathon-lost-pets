@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.Adapters.PetListAdapter;
 import com.example.mgkan.hackathon_lost_pets.Database.DBHelper;
+import com.example.mgkan.hackathon_lost_pets.Database.SC;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.Model.PetResponse;
 import com.example.mgkan.hackathon_lost_pets.R;
@@ -156,7 +157,7 @@ public class PetListActivity extends AppCompatActivity {
         Call<List<Pet>> call = apiService.getPetsWithSearch(apiToken, animal, "FOUND", "date DESC", search);
 
         DBHelper helper = DBHelper.getInstance(this);
-        pets = helper.getPetListFromDb();
+        pets = helper.getPetListFromDb(type);
 
         if (pets.size() == 0) {
             call.enqueue(new Callback<List<Pet>>() {
