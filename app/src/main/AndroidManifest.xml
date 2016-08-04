@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.PetListActivity"></activity>
+        <activity android:name=".Activities.PetListActivity" />
+        <activity android:name=".SecondScreenActivity"></activity>
     </application>
 
 </manifest>

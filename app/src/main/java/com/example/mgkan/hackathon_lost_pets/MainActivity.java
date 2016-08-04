@@ -1,9 +1,15 @@
 package com.example.mgkan.hackathon_lost_pets;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.mgkan.hackathon_lost_pets.Adapters.PetListAdapter;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
@@ -27,46 +33,29 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    ApiInterface apiService =
-            ApiClient.getClient().create(ApiInterface.class);
 
-    String apiToken = "GAuG06jfO7zdOLS1s0OktESQU";
+    final View lostAndFound = (Button) findViewById(R.id.lostAndFoundButton);
+    final View petProfile = (Button) findViewById(R.id.petProfileButton);
+    final View kitty = (ImageView) findViewById(R.id.kitty);
 
-    Call<PetResponse> call = apiService.getPets(apiToken, "Dog", "date DESC");
-
-    pets = new ArrayList<>();
-
-    call.enqueue(new Callback<PetResponse>() {
+    lostAndFound.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onResponse(Call<PetResponse> call, Response<PetResponse> response) {
-        int statusCode = response.code();
-        if (statusCode > 199 && statusCode < 300) {
-          pets.addAll(response.body().getResults());
-        }
-      }
+      public void onClick(View view) {
+        Intent i = new Intent(MainActivity.this, SecondScreenActivity.class);
 
-      @Override
-      public void onFailure(Call<PetResponse> call, Throwable t) {
-        // Log error here since request failed
-//        Log.e(TAG, t.toString());
-        Log.d("SEVTEST: ", "Call response != 200 code");
+//        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, kitty,
+//                kitty.getTransitionName())
+//                .toBundle();
+
+        Pair<View, String> pair1 = Pair.create(kitty, kitty.getTransitionName());
+//        Pair<View, String> pair2 = Pair.create(petProfile, petProfile.getTransitionName());
+//        Pair<View, String> pair3 = Pair.create(lostAndFound, lostAndFound.getTransitionName());
+        ActivityOptions options = ActivityOptions.
+                makeSceneTransitionAnimation(MainActivity.this, pair1);
+        startActivity(i, options.toBundle());
+
       }
     });
-    System.out.println("");
 
-//    Call<PetResponse> call = apiService.getPets(API_KEY,"Dog", sort);
-//    call.enqueue(new Callback<PetResponse>() {}
-//      @Override
-//      public void onResponse(Call<PetResponse> call, Response<PetResponse> response) {
-//        int statusCode = response.code();
-//        List<Pet> pets = response.body().getResults();
-//        recyclerView.setAdapter(new PetListAdapter(pets, R.layout.list_item_pet, context));
-//      }
-//
-//      @Override
-//      public void onFailure(Call<PetResponse> call, Throwable t) {
-//        // Log error here since request failed
-////        Log.e(TAG, t.toString());
-//      }
   }
 }
