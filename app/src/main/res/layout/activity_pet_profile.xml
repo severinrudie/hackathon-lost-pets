@@ -47,6 +47,36 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
+                android:text="Name"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/list_item_text"
+                android:textColor="@color/text_color"
+                android:paddingLeft="@dimen/list_item_text_padding"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/list_item_text_big"
+                android:textColor="@color/text_color"
+                android:text="Bandit"
+                android:id="@+id/dog_area"
+                android:paddingLeft="@dimen/list_item_text_padding"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_below="@+id/detail_color"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
                 android:text="Breed"
                 android:textAlignment="textEnd"
                 android:textSize="@dimen/list_item_text"
@@ -60,12 +90,10 @@
                 android:textSize="@dimen/list_item_text_big"
                 android:textColor="@color/text_color"
                 android:text="Terrier Mix"
-                android:id="@+id/dog_area"
                 android:paddingLeft="@dimen/list_item_text_padding"/>
 
 
         </LinearLayout>
-
         <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="0dp"-->
@@ -249,7 +277,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="2"
             android:layout_below="@+id/detail_color"
             android:layout_margin="2dp"
             android:orientation="horizontal" android:layout_gravity="center_horizontal"
