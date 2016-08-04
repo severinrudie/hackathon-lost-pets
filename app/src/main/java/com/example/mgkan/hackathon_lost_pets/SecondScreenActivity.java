@@ -3,6 +3,7 @@ package com.example.mgkan.hackathon_lost_pets;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,11 +27,10 @@ public class SecondScreenActivity extends AppCompatActivity {
         final View lostMyPet = (Button) findViewById(R.id.lostPetButton);
         final View foundAPet = (Button) findViewById(R.id.foundPetButton);
 
-        Animation inLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left);
-        Animation inRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right);
+        Animation inLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left_second);
+        Animation inRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right_second);
         lostMyPet.startAnimation(inRight);
         foundAPet.startAnimation(inLeft);
-
 
         lostMyPet.setOnClickListener(new View.OnClickListener() {
             @Override
