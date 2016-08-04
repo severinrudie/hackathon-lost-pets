@@ -1,16 +1,14 @@
 package com.example.mgkan.hackathon_lost_pets;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
+import com.example.mgkan.hackathon_lost_pets.rest.NotFoundImageLoader;
 import com.koushikdutta.ion.Ion;
-
-import org.w3c.dom.Text;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -19,22 +17,23 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        int pos = getIntent().getIntExtra("POS",0);
+        int pos = getIntent().getIntExtra("POS", 0);
 
         Pet pet = PetListActivity.pets.get(pos);
         ImageView photo = (ImageView) findViewById(R.id.detailPhoto);
 
         String url = pet.getImage();
 
-        Ion.with(photo)
-                .placeholder(R.color.colorPrimary)
-                .error(R.color.colorAccent)
+      Ion.with(photo)
+          .placeholder(R.color.colorPrimary)
+          .error(R.color.colorAccent)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)
-                .load(url);
+          .load(url)
+          .withBitmapInfo()
+          .setCallback(NotFoundImageLoader.handleNotFound(photo, this));
 
-
-        String[] splitDate = pet.getDate().split("-");
+      String[] splitDate = pet.getDate().split("-");
         splitDate[2] = splitDate[2].split("T")[0];
 
         String month = monthConstructor(splitDate[1]);
