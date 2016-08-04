@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.mgkan.hackathon_lost_pets.Database.DBHelper;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.koushikdutta.ion.builder.Builders;
 
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     mContext = this;
 
     verifyStoragePermissions(this);
+
+//    DBHelper helper = DBHelper.getInstance(this);
+//    helper.dropAllTables();
 
     final Button lostAndFound = (Button) findViewById(R.id.lostAndFoundButton);
     final Button petProfile = (Button) findViewById(R.id.petProfileButton);
