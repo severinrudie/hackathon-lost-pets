@@ -4,19 +4,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
-import com.example.mgkan.hackathon_lost_pets.Database.DBHelper;
-import com.example.mgkan.hackathon_lost_pets.Model.Pet;
-
-import java.util.List;
 
 
 public class SecondScreenActivity extends AppCompatActivity {
@@ -28,11 +24,8 @@ public class SecondScreenActivity extends AppCompatActivity {
 
         // TODO: SEV db test code
 
-        DBHelper helper = DBHelper.getInstance(this);
-
 //        Pet pet = new Pet("a", "b", "2016-05-12T00:00:00", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
 //        helper.dropAllTables();
-        helper.createDbIfNotExists();
 //        List<Pet> pets = helper.getPetListFromDb();
 //        helper.insertPetIntoDb(pet);
         // TODO: SEV db test code
