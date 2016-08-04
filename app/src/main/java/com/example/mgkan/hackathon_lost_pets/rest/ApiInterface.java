@@ -17,5 +17,5 @@ public interface ApiInterface {
   @GET("murn-chih.json")
   Call<List<Pet>> getPetsWithSearch(@Query("$$app_token") String apiToken, @Query("animal_type") String animalType,
                           @Query("Record_Type") String recordType, @Query("$order") String sort,
-                                    @Query("$q") String search);
+                                    @Query("$where=q") String search);
 }

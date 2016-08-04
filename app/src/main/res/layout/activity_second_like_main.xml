@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.mgkan.hackathon_lost_pets.MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:transitionName="@string/transition_photo"
+            android:id="@+id/kitty"
+            android:src="@drawable/kitty"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="60dp"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:src="@drawable/title_header"
+            android:id="@+id/title"
+            android:adjustViewBounds="true"
+            android:layout_gravity="bottom" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="fill_vertical"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="24sp"
+            android:alpha="0.8"
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorPrimary"
+            android:transitionName="@string/transitionButtonOne"
+            android:background="@drawable/rounded_button"
+            android:id="@+id/lostPetButton"
+            android:textAllCaps="false"
+            android:text="Lost My Pet"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:transitionName="@string/transitionButtonTwo"
+            android:textSize="24sp"
+            android:id="@+id/foundPetButton"
+            android:alpha="0.8"
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/rounded_button"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:text="Found A Pet"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            android:alpha="0.8"
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_button"
+            android:layout_weight="1"
+            android:id="@+id/petInfoButton"
+            android:layout_marginBottom="30dp"
+            android:visibility="invisible"
+            android:layout_gravity="center_horizontal"
+            android:text="Additional Info"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -149,6 +149,7 @@ public class DBHelper extends SQLiteOpenHelper {
             , address, memo, location));
             cursor.moveToNext();
         }
+        cursor.close();
         return pets;
     }
 

@@ -24,11 +24,13 @@ public class SecondScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_screen);
+        setContentView(R.layout.activity_second_like_main);
 
         // TODO: SEV db test code
 //        DBHelper helper = DBHelper.getInstance(this);
+
 //        Pet pet = new Pet("a", "b", "2016-05-12T00:00:00", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
+
 //        helper.dropAllTables();
 //        helper.createDbIfNotExists();
 //        List<Pet> pets = helper.getPetListFromDb();
@@ -37,13 +39,12 @@ public class SecondScreenActivity extends AppCompatActivity {
 
         mContext = this;
 
-        final View lostMyPet = (Button) findViewById(R.id.lostPetButton);
-        final View foundAPet = (Button) findViewById(R.id.foundPetButton);
+        final Button lostMyPet = (Button) findViewById(R.id.lostPetButton);
+        final Button foundAPet = (Button) findViewById(R.id.foundPetButton);
 
-        Animation inLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left_second);
-        Animation inRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right_second);
-        lostMyPet.startAnimation(inRight);
-        foundAPet.startAnimation(inLeft);
+        Animation pullLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left_second);
+        lostMyPet.startAnimation(pullLeft);
+        foundAPet.startAnimation(pullLeft);
 
         lostMyPet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +62,16 @@ public class SecondScreenActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        final View lostMyPet = (Button) findViewById(R.id.lostPetButton);
+        final View foundAPet = (Button) findViewById(R.id.foundPetButton);
+        Animation pushLeft = AnimationUtils.loadAnimation(mContext, R.anim.push_out_left);
+        lostMyPet.startAnimation(pushLeft);
+        foundAPet.startAnimation(pushLeft);
+        overridePendingTransition(0, 0);
     }
     private AlertDialog AskOptionHome() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)

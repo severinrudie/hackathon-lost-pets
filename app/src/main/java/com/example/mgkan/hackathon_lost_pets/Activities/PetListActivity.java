@@ -159,6 +159,7 @@ public class PetListActivity extends AppCompatActivity {
         DBHelper helper = DBHelper.getInstance(this);
         pets = helper.getPetListFromDb(type);
 
+
         if (pets.size() == 0) {
             call.enqueue(new Callback<List<Pet>>() {
                 @Override
@@ -172,14 +173,6 @@ public class PetListActivity extends AppCompatActivity {
                         for (Pet pet : pets) {
                             helper.insertPetIntoDb(pet);
                         }
-                        PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
-
-                        if (rvPets.getAdapter() == null) {
-                            rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
-                            rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                        } else {
-                            rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
-                        }
                     }
                 }
 
@@ -189,6 +182,14 @@ public class PetListActivity extends AppCompatActivity {
                     t.printStackTrace();
                 }
             });
+        }
+        PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
+
+        if (rvPets.getAdapter() == null) {
+            rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
+            rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        } else {
+            rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
         }
     }
 
