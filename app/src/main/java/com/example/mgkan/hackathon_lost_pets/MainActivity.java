@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     Animation inLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left);
     Animation inRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right);
-    petProfile.startAnimation(inRight);
-    petInfo.startAnimation(inRight);
-    lostAndFound.startAnimation(inLeft);
+    petProfile.startAnimation(inLeft);
+    petInfo.startAnimation(inLeft);
+    lostAndFound.startAnimation(inRight);
   }
 }
