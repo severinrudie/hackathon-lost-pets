@@ -14,6 +14,8 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.mgkan.hackathon_lost_pets.Adapters.PetListAdapter;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
@@ -47,11 +49,18 @@ public class PetListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_list);
 
-//        verifyStoragePermissions(this);
-
         final RecyclerView rvPets = (RecyclerView) findViewById(R.id.recyclerView_petList_petListActivity);
 
         populateWithSearchedFoundAnimal(rvPets, CAT, "");
+
+        ImageView exitButton = (ImageView) findViewById(R.id.exitListCard);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View listCard = findViewById(R.id.list_info_card);
+                listCard.setVisibility(View.GONE);
+            }
+        });
 
 
     }

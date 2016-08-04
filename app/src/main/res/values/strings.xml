@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hackathon Lost Pets</string>
+    <string name="app_name">Seattle Pet Finder</string>
     <string name="transition_photo">photo_transition</string>
     <string name="transitionButtonOne">transition_button_one</string>
     <string name="transitionButtonTwo">transition_button_two</string>
