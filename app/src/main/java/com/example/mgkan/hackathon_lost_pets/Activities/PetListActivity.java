@@ -210,16 +210,21 @@ public class PetListActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 DBHelper helper = DBHelper.getInstance(getBaseContext());
-                pets = helper.searchWithinDb(type, query);
-
-                PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
-
-                if (rvPets.getAdapter() == null) {
-                    rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
-                    rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                } else {
-                    rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+                List<Pet> possiblyPets = helper.searchWithinDb(type, query);
+                if (possiblyPets.size() > 0) {
+                    pets = possiblyPets;
+                    PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
+                    if (rvPets.getAdapter() == null) {
+                        rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
+                        rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    } else {
+                        rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+                    }
                 }
+
+
+
+
 
                 searchView.clearFocus();
 
