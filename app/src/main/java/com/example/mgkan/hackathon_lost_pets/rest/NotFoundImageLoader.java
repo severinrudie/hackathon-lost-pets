@@ -26,7 +26,7 @@ public class NotFoundImageLoader {
             // most found images are: 307200KB
             // most error images are:  76800KB
             // Log.d("IMAGE_SIZE", size + "KB " + url);
-            if (size < 100000) {
+            if (size < 80000 && size > 75000) {
               // replace not-found images with our own not-found placeholder
               image.setImageDrawable(context.getResources().getDrawable(R.drawable.dog_cat_sil_480));
             }
