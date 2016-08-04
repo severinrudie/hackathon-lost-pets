@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.CardView;
@@ -58,7 +61,6 @@ public class PetListAdapter extends
             gender = (TextView) itemView.findViewById(R.id.list_item_gender);
 
             view = itemView;
-
         }
     }
 
@@ -70,9 +72,7 @@ public class PetListAdapter extends
     public PetListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
         View contactView = inflater.inflate(R.layout.list_item, parent, false);
-
         ViewHolder viewHolder = new ViewHolder(contactView);
         return viewHolder;
     }
@@ -97,7 +97,7 @@ public class PetListAdapter extends
         }
 
         holder.breed.setText(pet.getAnimalBreed());
-        holder.date.setText(pet.getDate());
+                holder.date.setText(pet.getDate());
         holder.gender.setText(pet.getAnimalGender());
 
         final String id = pet.getAnimalId();
@@ -121,7 +121,6 @@ public class PetListAdapter extends
     public int getItemCount() {
         return mPets.size();
     }
-
 
 
 }

@@ -20,6 +20,10 @@ import com.example.mgkan.hackathon_lost_pets.rest.ApiInterface;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -121,7 +125,7 @@ public class PetListActivity extends AppCompatActivity {
                     }
                     pets.addAll(response.body());
                     PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
-                    rvPets.setAdapter(adapter);
+                    rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
                     rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 }
             }
