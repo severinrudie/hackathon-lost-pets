@@ -1,7 +1,10 @@
 package com.example.mgkan.hackathon_lost_pets.Adapters;
 
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.CardView;
+import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.R;
+import com.koushikdutta.ion.Ion;
 
 import java.util.List;
 
@@ -73,14 +78,42 @@ public class PetListAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(PetListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final PetListAdapter.ViewHolder holder, int position) {
         Pet pet = mPets.get(position);
 
+        String url = pet.getImage();
 
+        Ion.with(holder.photo)
+                .placeholder(R.color.colorPrimary)
+                .error(R.color.colorAccent)
+//                .animateLoad(spinAnimation)
+//                .animateIn(fadeInAnimation)
+                .load(url);
 
+        if (pet.getName() != null) {
+            holder.name.setText(pet.getName());
+        } else {
+            holder.name.setVisibility(View.GONE);
+        }
 
+        holder.breed.setText(pet.getAnimalBreed());
+        holder.date.setText(pet.getDate());
+        holder.gender.setText(pet.getAnimalGender());
 
-        // TODO: set view contents
+        final String id = pet.getAnimalId();
+
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(getContext(),TODO: DETAIL VIEW ACTIVITY NAME);
+//
+//                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                i.putExtra("id",id);
+//                mContext.startActivity(i);
+                Toast.makeText(mContext, "Pet with id: "+id+" has been pressed!", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     // Returns the total count of items in the list
