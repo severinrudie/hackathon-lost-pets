@@ -63,6 +63,21 @@
             android:textAllCaps="false"
             android:text="Lost My Pet"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:transitionName="@string/transitionButtonTwo"
+            android:textSize="24sp"
+            android:id="@+id/lostAndFoundButton"
+            android:alpha="0.8"
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_button"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Lost and Found"/>
+
 
 
         <Button
