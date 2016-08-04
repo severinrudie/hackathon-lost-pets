@@ -30,7 +30,8 @@ public class SecondScreenActivity extends AppCompatActivity {
         Animation inRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right);
         lostMyPet.startAnimation(inRight);
         foundAPet.startAnimation(inLeft);
-        
+
+
         lostMyPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +42,6 @@ public class SecondScreenActivity extends AppCompatActivity {
         });
 
     }
-
     private AlertDialog AskOptionHome() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
                 //set message, title, and icon
