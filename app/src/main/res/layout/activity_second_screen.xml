@@ -8,7 +8,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
     tools:context="com.example.mgkan.hackathon_lost_pets.MainActivity">
 
     <FrameLayout
@@ -35,12 +34,12 @@
             android:layout_marginStart="25dp"
             android:transitionName="@string/transitionButtonOne"
             android:layout_gravity="center_horizontal"
-            
             android:textSize="24sp"
-            android:backgroundTint="#5fff"
+            android:alpha="0.8"
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorPrimary"
             android:background="@drawable/rounded_button"
             android:id="@+id/lostPetButton"
-            android:textColor="#273d21"
             android:textAllCaps="false"
             android:text="Lost My Pet"/>
 
@@ -53,11 +52,12 @@
             android:layout_marginStart="25dp"
             android:paddingBottom="10dp"
             android:transitionName="@string/transitionButtonTwo"
-            android:backgroundTint="#5fff"
             android:textAllCaps="false"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:textColor="#273d21"
+            android:alpha="0.8"
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorPrimary"
             android:background="@drawable/rounded_button"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
