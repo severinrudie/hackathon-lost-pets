@@ -12,17 +12,39 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:transitionName="@string/transition_photo"
+            android:id="@+id/kitty"
             android:src="@drawable/kitty"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:src="@drawable/title_header"
+            android:id="@+id/title"
+            android:adjustViewBounds="true"
+            android:layout_gravity="bottom" />
 
     </FrameLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="fill_vertical"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
         <Button
             android:layout_width="match_parent"
@@ -41,6 +63,8 @@
             android:textAllCaps="false"
             android:text="Lost My Pet"/>
 
+
+
         <Button
             android:layout_width="match_parent"
             android:textSize="24sp"
@@ -58,6 +82,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Found A Pet"/>
+
+        </LinearLayout>
+
+
 
 
 

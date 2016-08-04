@@ -26,31 +26,52 @@
         />
 
     </FrameLayout>
-    <!--<LinearLayout-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp" android:weightSum="1" android:layout_weight="1"-->
-        <!--android:gravity="center_vertical|center_horizontal">-->
-        <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/imageView"-->
-            <!--android:src="@drawable/bandit"-->
-            <!--android:layout_above="@+id/linearLayout" android:layout_centerHorizontal="true"-->
-            <!--android:layout_marginBottom="20dp"/>-->
-    <!--</LinearLayout>-->
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp" android:layout_alignParentBottom="true"
         android:id="@+id/linearLayout" android:layout_weight="1" android:gravity="bottom"
         android:layout_marginLeft="20dp" android:layout_marginRight="20dp">
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="Breed: Terrier Mix"
-            android:id="@+id/textView1"
-            android:textSize="24sp" android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_below="@+id/detail_color"
+            android:id="@+id/detail_region"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Breed"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/list_item_text"
+                android:textColor="@color/text_color"
+                android:paddingLeft="@dimen/list_item_text_padding"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/list_item_text_big"
+                android:textColor="@color/text_color"
+                android:text="Terrier Mix"
+                android:id="@+id/dog_area"
+                android:paddingLeft="@dimen/list_item_text_padding"/>
+
+
+        </LinearLayout>
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:text="Breed: Terrier Mix"-->
+            <!--android:id="@+id/textView1"-->
+            <!--android:textSize="24sp" android:layout_weight="1"/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
