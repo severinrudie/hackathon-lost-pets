@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.Adapters.PetListAdapter;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
@@ -31,7 +32,7 @@ public class PetListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_list);
 
-        verifyStoragePermissions(this);
+//        verifyStoragePermissions(this);
 
         ApiInterface apiService =
           ApiClient.getClient().create(ApiInterface.class);
@@ -48,28 +49,26 @@ public class PetListActivity extends AppCompatActivity {
         rvPets.setLayoutManager(new LinearLayoutManager(this));
 
 
-
-
     }
 
-    private static final int REQUEST_PERMISSIONS = 1;
-    private static String[] PERMISSIONS_INTERNET = {
-            Manifest.permission.INTERNET,
-    };
-
-    public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_INTERNET,
-                    REQUEST_PERMISSIONS
-            );
-        }
-    }
+//    private static final int REQUEST_PERMISSIONS = 1;
+//    private static String[] PERMISSIONS_INTERNET = {
+//            Manifest.permission.INTERNET,
+//    };
+//
+//    public static void verifyStoragePermissions(Activity activity) {
+//        // Check if we have write permission
+//        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET);
+//
+//        if (permission != PackageManager.PERMISSION_GRANTED) {
+//            // We don't have permission so prompt the user
+//            ActivityCompat.requestPermissions(
+//                    activity,
+//                    PERMISSIONS_INTERNET,
+//                    REQUEST_PERMISSIONS
+//            );
+//        }
+//    }
 
 
 }
