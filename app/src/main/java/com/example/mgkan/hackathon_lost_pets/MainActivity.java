@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         petProfile.startAnimation(outLeft);
         petInfo.startAnimation(outLeft);
         lostAndFound.startAnimation(outRight);
+
           ActivityOptions options = ActivityOptions.
                   makeSceneTransitionAnimation(MainActivity.this, pair1);
           startActivity(i, options.toBundle());
@@ -64,5 +65,18 @@ public class MainActivity extends AppCompatActivity {
 
     });
 
+  }
+  @Override
+  public void onResume() {
+    super.onResume();
+    final View lostAndFound = (Button) findViewById(R.id.lostAndFoundButton);
+    final View petProfile = (Button) findViewById(R.id.petProfileButton);
+    final View petInfo = (Button) findViewById(R.id.petInfoButton);
+
+    Animation inLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left);
+    Animation inRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right);
+    petProfile.startAnimation(inRight);
+    petInfo.startAnimation(inRight);
+    lostAndFound.startAnimation(inLeft);
   }
 }
