@@ -52,12 +52,15 @@ public class PetListActivity extends AppCompatActivity {
     public static final String CAT = "Cat";
     private String type;
     private RecyclerView rvPets;
+    private boolean UPDATE_DB;
+    int httpCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.search_name);
         setContentView(R.layout.activity_pet_list);
+        hasEnoughTimeElapsed(System.currentTimeMillis());
 
         verifyStoragePermissions(this);
 
@@ -148,23 +151,22 @@ public class PetListActivity extends AppCompatActivity {
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
-        if (search.trim().equals("")){
-            search = animal;
-        } else {
-            search = generalizeSearchString(search);
-        }
+//        if (search.trim().equals("")){
+//            search = animal;
+//        } else {
+//            search = generalizeSearchString(search);
+//        }
 
-        Call<List<Pet>> call = apiService.getPetsWithSearch(apiToken, animal, "FOUND", "date DESC", search);
+        Call<List<Pet>> call = apiService.getPetsWithSearch(apiToken, "FOUND", "date DESC");
 
         DBHelper helper = DBHelper.getInstance(this);
         pets = helper.getPetListFromDb(type);
 
-
-        if (pets.size() == 0) {
+        if (pets.size() == 0 || UPDATE_DB) {
+            UPDATE_DB = false;
             call.enqueue(new Callback<List<Pet>>() {
                 @Override
                 public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-
                     int statusCode = response.code();
                     if (statusCode > 199 && statusCode < 300) {
 
@@ -180,6 +182,7 @@ public class PetListActivity extends AppCompatActivity {
                 public void onFailure(Call<List<Pet>> call, Throwable t) {
                     Log.d("SEVTEST: ", "Call response != 200 code");
                     t.printStackTrace();
+                    Log.d("SEVCODE ", "" + call.request().url());
                 }
             });
         }
@@ -216,6 +219,16 @@ public class PetListActivity extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void hasEnoughTimeElapsed(long current) {
+        DBHelper helper = DBHelper.getInstance(this);
+        long saved = helper.getSavedTime();
+
+        // 12 hours in milliseconds
+        if ((current - saved) > 43200000) {
+            UPDATE_DB = true;
+        }
     }
 
 }
