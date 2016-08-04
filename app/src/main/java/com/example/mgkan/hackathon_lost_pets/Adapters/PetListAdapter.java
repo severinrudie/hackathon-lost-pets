@@ -102,7 +102,8 @@ public class PetListAdapter extends
                   // most error images are:  76800KB
                   // Log.d("IMAGE_SIZE", size + "KB " + url);
                   if (size < 100000) {
-                    // replace not-found images with placeholder
+                    // replace not-found images with our own not-found placeholder
+                    holder.photo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.dog_cat_sil_480));
                   }
                 }
               }
