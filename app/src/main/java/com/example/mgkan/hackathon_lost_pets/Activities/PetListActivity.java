@@ -34,8 +34,8 @@ public class PetListActivity extends AppCompatActivity {
     private final static String sort = "date DESC";
     List<Pet> pets;
 
-    public final String DOG = "Dog";
-    public final String CAT = "Cat";
+    public static final String DOG = "Dog";
+    public static final String CAT = "Cat";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
