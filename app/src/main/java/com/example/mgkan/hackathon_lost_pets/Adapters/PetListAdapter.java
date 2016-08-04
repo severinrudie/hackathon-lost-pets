@@ -75,7 +75,6 @@ public class PetListAdapter extends
     @Override
     public void onBindViewHolder(PetListAdapter.ViewHolder holder, int position) {
         Pet pet = mPets.get(position);
-        
 
 
 
