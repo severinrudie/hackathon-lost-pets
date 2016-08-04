@@ -56,6 +56,8 @@ public class PetListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_list);
 
+        verifyStoragePermissions(this);
+
         handleIntent(getIntent());
 
         rvPets = (RecyclerView) findViewById(R.id.recyclerView_petList_petListActivity);

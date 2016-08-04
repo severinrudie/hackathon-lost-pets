@@ -18,8 +18,6 @@ public class DetailActivity extends AppCompatActivity {
 
         int pos = getIntent().getIntExtra("POS",0);
 
-        Toast.makeText(DetailActivity.this, ""+pos+ " pressed!", Toast.LENGTH_SHORT).show();
-
         Pet pet = PetListActivity.pets.get(pos);
         ImageView photo = (ImageView) findViewById(R.id.detailPhoto);
 
@@ -32,5 +30,53 @@ public class DetailActivity extends AppCompatActivity {
 //                .animateIn(fadeInAnimation)
                 .load(url);
 
+
+        String[] splitDate = pet.getDate().split("-");
+        splitDate[2] = splitDate[2].split("T")[0];
+
+        String month = monthConstructor(splitDate[1]);
+        String day = splitDate[2];
+        String year = splitDate[0];
+        String formattedDate = month + " " + day + ", " + year;
+
+//        for (String bit : splitDate) {
+//            Log.d("SEVTEST ", "Chunk: " + bit);
+//        }
+
+        breed.setText(pet.getAnimalBreed());
+        date.setText(formattedDate);
+        gender.setText(pet.getAnimalGender());
+
+    }
+
+    private String monthConstructor(String month) {
+        String result = "";
+        switch (month) {
+            case "01": result = "January";
+                break;
+            case "02": result = "February";
+                break;
+            case "03": result = "March";
+                break;
+            case "04": result = "April";
+                break;
+            case "05": result = "May";
+                break;
+            case "06": result = "June";
+                break;
+            case "07": result = "July";
+                break;
+            case "08": result = "August";
+                break;
+            case "09": result = "September";
+                break;
+            case "10": result = "October";
+                break;
+            case "11": result = "November";
+                break;
+            case "12": result = "December";
+                break;
+        }
+        return result;
     }
 }
