@@ -162,20 +162,22 @@ public class PetListActivity extends AppCompatActivity {
         DBHelper helper = DBHelper.getInstance(this);
         pets = helper.getPetListFromDb(type);
 
+
         if (pets.size() == 0 || UPDATE_DB) {
-            UPDATE_DB = false;
             call.enqueue(new Callback<List<Pet>>() {
                 @Override
                 public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+                    DBHelper helper = DBHelper.getInstance(getBaseContext());
                     int statusCode = response.code();
                     if (statusCode > 199 && statusCode < 300) {
 
                         pets = (response.body());
-                        DBHelper helper = DBHelper.getInstance(getBaseContext());
                         for (Pet pet : pets) {
                             helper.insertPetIntoDb(pet);
                         }
                     }
+                    helper.setSavedTime(System.currentTimeMillis());
+                    UPDATE_DB = false;
                 }
 
                 @Override
