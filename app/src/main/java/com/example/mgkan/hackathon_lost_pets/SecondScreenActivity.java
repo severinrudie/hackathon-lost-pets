@@ -1,28 +1,37 @@
 package com.example.mgkan.hackathon_lost_pets;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
 
 
 public class SecondScreenActivity extends AppCompatActivity {
-
+    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_screen);
 
-        final View lostMyPet = (Button) findViewById(R.id.petProfileButton);
-        final View foundAPet = (Button) findViewById(R.id.petInfoButton);
+        mContext = this;
 
-        Button lostPet = (Button) findViewById(R.id.lostPetButton);
-        lostPet.setOnClickListener(new View.OnClickListener() {
+        final View lostMyPet = (Button) findViewById(R.id.lostPetButton);
+        final View foundAPet = (Button) findViewById(R.id.foundPetButton);
+
+        Animation inLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left);
+        Animation inRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right);
+        lostMyPet.startAnimation(inRight);
+        foundAPet.startAnimation(inLeft);
+        
+        lostMyPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
