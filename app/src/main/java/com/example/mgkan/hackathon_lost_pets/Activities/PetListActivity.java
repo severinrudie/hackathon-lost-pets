@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -39,19 +40,23 @@ import retrofit2.Response;
 public class PetListActivity extends AppCompatActivity {
     private final static String API_KEY = "GAuG06jfO7zdOLS1s0OktESQU";
     private final static String sort = "date DESC";
-    List<Pet> pets;
+    public static List<Pet> pets;
 
     public static final String DOG = "Dog";
     public static final String CAT = "Cat";
+    private String type;
+    private RecyclerView rvPets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_list);
 
-        final RecyclerView rvPets = (RecyclerView) findViewById(R.id.recyclerView_petList_petListActivity);
+        rvPets = (RecyclerView) findViewById(R.id.recyclerView_petList_petListActivity);
 
-        populateWithSearchedFoundAnimal(rvPets, CAT, "");
+        type = getIntent().getStringExtra("TYPE");
+
+        populateWithSearchedFoundAnimal(rvPets, type, "");
 
         ImageView exitButton = (ImageView) findViewById(R.id.exitListCard);
         exitButton.setOnClickListener(new View.OnClickListener() {
@@ -125,13 +130,18 @@ public class PetListActivity extends AppCompatActivity {
                 int statusCode = response.code();
                 if (statusCode > 199 && statusCode < 300) {
 
-                    for (Pet pet : response.body()) {
-                        pets.add(pet);
-                    }
-                    pets.addAll(response.body());
+//                    for (Pet pet : response.body()) {
+//                        pets.add(pet);
+//                    }
+                    pets = (response.body());
                     PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
-                    rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
                     rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+
+                    if (rvPets.getAdapter() == null) {
+                        rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
+                    } else {
+                        rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+                    }
                 }
             }
 
