@@ -45,6 +45,11 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
         <Button
             android:layout_width="match_parent"
             android:transitionName="@string/transitionButtonTwo"
@@ -54,17 +59,21 @@
             android:textColor="#fff"
             android:backgroundTint="@color/colorPrimary"
             android:textAllCaps="false"
-            android:layout_marginTop="30dp"
             android:background="@drawable/rounded_button"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="4"
             android:layout_gravity="center_horizontal"
             android:text="Lost and Found"/>
 
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
+
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="4"
             android:layout_gravity="center_horizontal"
             android:textSize="24sp"
             android:alpha="0.8"
@@ -76,6 +85,11 @@
             android:textAllCaps="false"
             android:text="My Pet Profile"/>
 
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
+
 
         <Button
             android:layout_width="match_parent"
@@ -85,11 +99,16 @@
             android:textColor="#fff"
             android:backgroundTint="@color/colorPrimary"
             android:background="@drawable/rounded_button"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="4"
             android:id="@+id/petInfoButton"
-            android:layout_marginBottom="30dp"
             android:layout_gravity="center_horizontal"
             android:text="Tips and Info"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
