@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by erikrudie on 8/3/16.
  */
 public class Pet {
+
     @SerializedName("current_location")
     private String currentLocation;// current_location
     @SerializedName("animal_id")

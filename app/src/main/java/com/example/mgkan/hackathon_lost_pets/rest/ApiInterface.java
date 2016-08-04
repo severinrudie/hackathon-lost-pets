@@ -1,6 +1,9 @@
 package com.example.mgkan.hackathon_lost_pets.rest;
 
+import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.example.mgkan.hackathon_lost_pets.Model.PetResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -11,5 +14,5 @@ import retrofit2.http.Query;
  */
 public interface ApiInterface {
   @GET("murn-chih.json")
-  Call<PetResponse> getPets(@Query("$$api_token") String apiToken, @Query("animal_type") String animalType, @Query("$order") String sort);
+  Call<List<Pet>> getPets(@Query("$$app_token") String apiToken, @Query("animal_type") String animalType, @Query("$order") String sort);
 }

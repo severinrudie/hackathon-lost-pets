@@ -36,7 +36,7 @@ public class PetListActivity extends AppCompatActivity {
         ApiInterface apiService =
           ApiClient.getClient().create(ApiInterface.class);
 
-        Call<PetResponse> call = apiService.getPets(API_KEY, "Dog", sort);
+        Call<List<Pet>> call = apiService.getPets(API_KEY, "Dog", sort);
 
 
 

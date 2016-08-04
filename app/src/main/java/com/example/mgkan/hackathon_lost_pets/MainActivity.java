@@ -32,27 +32,41 @@ public class MainActivity extends AppCompatActivity {
 
     String apiToken = "GAuG06jfO7zdOLS1s0OktESQU";
 
-    Call<PetResponse> call = apiService.getPets(apiToken, "Dog", "date DESC");
+    Call<List<Pet>> call = apiService.getPets(apiToken, "Dog", "date DESC");
+
+    Log.d("Url: ", call.request().url().toString());
 
     pets = new ArrayList<>();
 
-    call.enqueue(new Callback<PetResponse>() {
+    Log.d("Here: ", " something");
+
+    call.enqueue(new Callback<List<Pet>>() {
       @Override
-      public void onResponse(Call<PetResponse> call, Response<PetResponse> response) {
+      public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+
+        Log.d("Here: ", " something2");
+        Log.d("Response Code: ", "" + response.code());
+
         int statusCode = response.code();
         if (statusCode > 199 && statusCode < 300) {
-          pets.addAll(response.body().getResults());
+          Log.d("SEVTEST: ", response.body().toString());
+
+          Log.d("Brad TEST: ", "This Works!!!");
+          for (Pet doggy : response.body()) {
+
+            Log.d("Brad's Dog: ", "=>" + doggy.getAddress());
+          }
+          //pets.addAll(response.body().getResults());
         }
       }
 
       @Override
-      public void onFailure(Call<PetResponse> call, Throwable t) {
+      public void onFailure(Call<List<Pet>> call, Throwable t) {
         // Log error here since request failed
 //        Log.e(TAG, t.toString());
         Log.d("SEVTEST: ", "Call response != 200 code");
       }
     });
-    System.out.println("");
 
 //    Call<PetResponse> call = apiService.getPets(API_KEY,"Dog", sort);
 //    call.enqueue(new Callback<PetResponse>() {}
