@@ -43,9 +43,9 @@ public class DetailActivity extends AppCompatActivity {
 //            Log.d("SEVTEST ", "Chunk: " + bit);
 //        }
 
-        breed.setText(pet.getAnimalBreed());
-        date.setText(formattedDate);
-        gender.setText(pet.getAnimalGender());
+//        breed.setText(pet.getAnimalBreed());
+//        date.setText(formattedDate);
+//        gender.setText(pet.getAnimalGender());
 
     }
 
