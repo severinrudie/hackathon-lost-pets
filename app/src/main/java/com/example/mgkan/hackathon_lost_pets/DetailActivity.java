@@ -3,11 +3,14 @@ package com.example.mgkan.hackathon_lost_pets;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 import com.koushikdutta.ion.Ion;
+
+import org.w3c.dom.Text;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -39,13 +42,18 @@ public class DetailActivity extends AppCompatActivity {
         String year = splitDate[0];
         String formattedDate = month + " " + day + ", " + year;
 
-//        for (String bit : splitDate) {
-//            Log.d("SEVTEST ", "Chunk: " + bit);
-//        }
+        TextView breed = (TextView) findViewById(R.id.dog_breed);
+        TextView date = (TextView) findViewById(R.id.dog_date_found);
+        TextView gender = (TextView) findViewById(R.id.dog_gender);
+        TextView color = (TextView) findViewById(R.id.dog_color);
+        TextView area = (TextView) findViewById(R.id.dog_area);
 
-//        breed.setText(pet.getAnimalBreed());
-//        date.setText(formattedDate);
-//        gender.setText(pet.getAnimalGender());
+        breed.setText(pet.getAnimalBreed());
+        date.setText(formattedDate);
+        gender.setText(pet.getAnimalGender());
+        color.setText(pet.getColor());
+        area.setText(pet.getCity());
+
 
     }
 
