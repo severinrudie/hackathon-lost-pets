@@ -93,14 +93,16 @@ public class PetListAdapter extends
                 // Check for exceptions
 
                 // Check bitmaps first
-                Bitmap b = result.getBitmapInfo().bitmap;
-                int size = b.getByteCount();
+                if (result != null && result.getBitmapInfo() != null && result.getBitmapInfo().bitmap != null) {
+                  Bitmap b = result.getBitmapInfo().bitmap;
+                  int size = b.getByteCount();
 
-                // most found images are: 307200KB
-                // most error images are:  76800KB
-                // Log.d("IMAGE_SIZE", size + "KB " + url);
-                if (size < 100000) {
-                  // replace not-found images with placeholder
+                  // most found images are: 307200KB
+                  // most error images are:  76800KB
+                  // Log.d("IMAGE_SIZE", size + "KB " + url);
+                  if (size < 100000) {
+                    // replace not-found images with placeholder
+                  }
                 }
               }
             });
@@ -109,10 +111,7 @@ public class PetListAdapter extends
 
               String[] splitDate = pet.getDate().split("-");
               splitDate[2]=splitDate[2].
-
-              split("T")[
-
-              0];
+              split("T")[0];
 
               String month = monthConstructor(splitDate[1]);
               String day = splitDate[2];
