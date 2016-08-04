@@ -41,6 +41,7 @@ public class Pet {
     @SerializedName("memo")
     private String memo;  //  memo | String broken up by <p></p>
     //    double[] coordinates;  //  link | location_for_map.coordinates |
+    private int dayInt;
 
     public Pet(String animalId, String animalType, String date, String dateType, String color,
                String image, String city, String name, String animalGender,
@@ -60,6 +61,8 @@ public class Pet {
         this.address = address;
         this.memo = memo;
         this.currentLocation = currentLocation;
+        String tempDay = date.split("-")[2];
+        this.dayInt = Integer.parseInt(tempDay.split("T")[0]);
     }
 
     public String getCurrentLocation() {
@@ -182,7 +185,7 @@ public class Pet {
         this.memo = memo;
     }
 
-
-
-
+    public int getDayInt() {
+        return dayInt;
+    }
 }

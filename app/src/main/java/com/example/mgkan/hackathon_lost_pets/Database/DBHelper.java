@@ -4,15 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
 
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by erikrudie on 7/23/16.
@@ -58,12 +54,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void createDbIfNotExists() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(SC.CREATE_TABLE);
+        db.execSQL(SC.CREATE_TABLE_PETS);
+        db.execSQL(SC.CREATE_TABLE_TIME);
     }
 
     public void dropAllTables() {
         SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL("DROP TABLE IF EXISTS " + SC.TABLE_PETS);
+    }
+
+    public long getSavedTime() {
+        String sql = "SELECT * FROM " + SC.TABLE_TIME + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {
+            return cursor.getLong(0);
+        }
+        return 0;
     }
 
 
@@ -85,14 +93,15 @@ public class DBHelper extends SQLiteOpenHelper {
         String address = cleanTextForDb(pet.getAddress());
         String memo = cleanTextForDb(pet.getMemo());
         String location = cleanTextForDb(pet.getCurrentLocation());
+        int dayInt = pet.getDayInt();
 
         String sql = "INSERT INTO " + SC.TABLE_PETS + " (" + SC.ID + ", " + SC.TYPE + ", " + SC.DATE + ", "
                 + SC.DATE_TYPE + ", " + SC.COLOR + ", " + SC.IMAGE + ", " + SC.CITY + ", " + SC.NAME + ", "
                 + SC.GENDER + ", " + SC.BREED + ", " + SC.LINK + ", " + SC.ZIP + ", " + SC.ADDRESS + ", "
-                + SC.MEMO + ", " + SC.LOCATION + ") VALUES ('" + id + "', '" + type + "', '"
+                + SC.MEMO + ", " + SC.LOCATION + ", " + SC.DAY_INT + ") VALUES ('" + id + "', '" + type + "', '"
                 + date + "', '" + dateType + "', '" + color + "', '"  + image + "', '" + city + "', '"
                 + name + "', '" + gender + "', '" + breed + "', '" + link + "', '" + zip + "', '"
-                + address + "', '" + memo + "', '" + location + "');";
+                + address + "', '" + memo + "', '" + location + "', '" + dayInt + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
@@ -121,15 +130,14 @@ public class DBHelper extends SQLiteOpenHelper {
 //    public static final String ADDRESS = "address";
 //    public static final String MEMO = "memo";
 //    public static final String LOCATION = "location";
-    public List<Pet> getPetListFromDb() {
-        String sql = "SELECT * FROM " + SC.TABLE_PETS +";";
+    public List<Pet> getPetListFromDb(String dogCat) {
+        String sql = "SELECT * FROM " + SC.TABLE_PETS +" WHERE " + SC.TYPE + " = '" + dogCat +"';";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
 
-        int count = 0;
         List<Pet> pets = new ArrayList<>();
-        while (!cursor.isAfterLast() && count < 50) {
+        while (!cursor.isAfterLast()) {
             String id = cursor.getString(cursor.getColumnIndexOrThrow(SC.ID));
             String type = cursor.getString(cursor.getColumnIndexOrThrow(SC.TYPE));
             String date = cursor.getString(cursor.getColumnIndexOrThrow(SC.DATE));
@@ -147,12 +155,15 @@ public class DBHelper extends SQLiteOpenHelper {
             String location = cursor.getString(cursor.getColumnIndexOrThrow(SC.LOCATION));
             pets.add(new Pet(id, type, date, dateType, color, image, city, name, gender, breed, link, zip
             , address, memo, location));
-//            count++;
             cursor.moveToNext();
         }
         cursor.close();
         return pets;
     }
+
+//    public List<Pet> getAnimalFromDatabase(String animal) {
+//        String sql =
+//    }
 
 
 }
