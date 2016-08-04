@@ -69,21 +69,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // This method returns the character ID of the inserted row after inserting character details
     public void insertPetIntoDb(Pet pet) {
-        String id = pet.getAnimalId();
-        String type = pet.getAnimalType();
-        String date = pet.getDate();
-        String dateType = pet.getDateType();
-        String color = pet.getColor();
-        String image = pet.getImage();
-        String city = pet.getCity();
-        String name = pet.getName();
-        String gender = pet.getAnimalGender();
-        String breed = pet.getAnimalBreed();
-        String link = pet.getLink();
+        String id = cleanTextForDb(pet.getAnimalId());
+        String type = cleanTextForDb(pet.getAnimalType());
+        String date = cleanTextForDb(pet.getDate());
+        String dateType = cleanTextForDb(pet.getDateType());
+        String color = cleanTextForDb(pet.getColor());
+        String image = cleanTextForDb(pet.getImage());
+        String city = cleanTextForDb(pet.getCity());
+        String name = cleanTextForDb(pet.getName());
+        String gender = cleanTextForDb(pet.getAnimalGender());
+        String breed = cleanTextForDb(pet.getAnimalBreed());
+        String link = cleanTextForDb(pet.getLink());
         int zip = pet.getZip();
-        String address = pet.getAddress();
-        String memo = pet.getMemo();
-        String location = pet.getCurrentLocation();
+        String address = cleanTextForDb(pet.getAddress());
+        String memo = cleanTextForDb(pet.getMemo());
+        String location = cleanTextForDb(pet.getCurrentLocation());
 
         String sql = "INSERT INTO " + SC.TABLE_PETS + " (" + SC.ID + ", " + SC.TYPE + ", " + SC.DATE + ", "
                 + SC.DATE_TYPE + ", " + SC.COLOR + ", " + SC.IMAGE + ", " + SC.CITY + ", " + SC.NAME + ", "
