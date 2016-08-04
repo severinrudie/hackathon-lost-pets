@@ -35,7 +35,7 @@ public class PetListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_list);
 
-        verifyStoragePermissions(this);
+//        verifyStoragePermissions(this);
 
         final RecyclerView rvPets = (RecyclerView) findViewById(R.id.recyclerView_petList_petListActivity);
 
@@ -91,8 +91,27 @@ public class PetListActivity extends AppCompatActivity {
                     REQUEST_PERMISSIONS
             );
         }
-
     }
+
+//    private static final int REQUEST_PERMISSIONS = 1;
+//    private static String[] PERMISSIONS_INTERNET = {
+//            Manifest.permission.INTERNET,
+//    };
+//
+//    public static void verifyStoragePermissions(Activity activity) {
+//        // Check if we have write permission
+//        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET);
+//
+//        if (permission != PackageManager.PERMISSION_GRANTED) {
+//            // We don't have permission so prompt the user
+//            ActivityCompat.requestPermissions(
+//                    activity,
+//                    PERMISSIONS_INTERNET,
+//                    REQUEST_PERMISSIONS
+//            );
+//        }
+//    }
+//    }
 }
 
 
