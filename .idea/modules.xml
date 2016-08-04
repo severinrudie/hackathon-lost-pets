@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Hackathon_Lost_Pets.iml" filepath="$PROJECT_DIR$/Hackathon_Lost_Pets.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hackathon-lost-pets.iml" filepath="$PROJECT_DIR$/hackathon-lost-pets.iml" />
     </modules>
   </component>
 </project>
