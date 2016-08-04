@@ -91,30 +91,7 @@ public class PetListAdapter extends
 
                 .load(url)
             .withBitmapInfo()
-
-            .setCallback(new FutureCallback<ImageViewBitmapInfo>() {
-              @Override
-              public void onCompleted(Exception e, ImageViewBitmapInfo result) {
-                // Check for exceptions
-
-                  int size = 200000;
-                  // Check bitmaps first
-                  try {
-                      Bitmap b = result.getBitmapInfo().bitmap;
-                      size = b.getByteCount();
-                  } catch (NullPointerException f) {
-                      f.printStackTrace();
-                  }
-
-                // most found images are: 307200KB
-                // most error images are:  76800KB
-                // Log.d("IMAGE_SIZE", size + "KB " + url);
-                if (size < 100000) {
-                  // replace not-found images with placeholder
-                }
-              }
-            });
-//            .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
+            .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
 
 //        if (pet.getName() != null) {
 
