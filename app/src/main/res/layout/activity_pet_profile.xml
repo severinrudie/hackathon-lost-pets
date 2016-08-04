@@ -264,7 +264,8 @@
                 android:layout_height="wrap_content"
                 android:text="My Pet is Lost"
                 android:id="@+id/lostButton" android:layout_gravity="center_horizontal"
-                android:textSize="16sp"/>
+                android:textSize="16sp" android:layout_marginBottom="6dp"
+                android:textAlignment="center"/>
         </LinearLayout>
 
         <!--<TextView-->
