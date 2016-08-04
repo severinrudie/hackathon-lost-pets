@@ -73,9 +73,10 @@ public class PetListAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(PetListAdapter.ViewHolder viewHolder, int position) {
-        // Get the data model based on position
+    public void onBindViewHolder(PetListAdapter.ViewHolder holder, int position) {
         Pet pet = mPets.get(position);
+        
+
 
 
 
