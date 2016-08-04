@@ -43,11 +43,8 @@ public class SecondScreenActivity extends AppCompatActivity {
         foundAPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("http://www.kingcounty.gov/depts/regional-animal-services/lost-and-found/FOUND.aspx"));
-                startActivity(intent);
+                AlertDialog diaBox = AskFoundPet();
+                diaBox.show();
             }
         });
 
@@ -56,7 +53,7 @@ public class SecondScreenActivity extends AppCompatActivity {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
                 //set message, title, and icon
                 .setTitle("Search Pets")
-                .setMessage("Would you like to look for a dog or cat?")
+                .setMessage("Would you like to look for a dog or a cat?")
                 .setIcon(R.drawable.ic_adb)
 
                 .setPositiveButton("Cat", new DialogInterface.OnClickListener() {
@@ -80,6 +77,42 @@ public class SecondScreenActivity extends AppCompatActivity {
                     }
                 })
                 .create();
+        return myQuittingDialogBox;
+
+    }
+
+    private AlertDialog AskFoundPet() {
+        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+          //set message, title, and icon
+          .setTitle("Found A Pet")
+          .setMessage("Did you find a dog or a cat?")
+          .setIcon(R.drawable.ic_adb)
+
+          .setPositiveButton("Cat", new DialogInterface.OnClickListener() {
+
+              public void onClick(DialogInterface dialog, int whichButton) {
+
+                  Intent intent = new Intent();
+                  intent.setAction(Intent.ACTION_VIEW);
+                  intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                  intent.setData(Uri.parse("http://www.kingcounty.gov/depts/regional-animal-services/lost-and-found/FOUND/submitCat.aspx"));
+                  startActivity(intent);
+              }
+
+          })
+
+          .setNegativeButton("Dog", new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int which) {
+
+                  Intent intent = new Intent();
+                  intent.setAction(Intent.ACTION_VIEW);
+                  intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                  intent.setData(Uri.parse("http://www.kingcounty.gov/depts/regional-animal-services/lost-and-found/FOUND/submitDog.aspx"));
+                  startActivity(intent);
+
+              }
+          })
+          .create();
         return myQuittingDialogBox;
 
     }
