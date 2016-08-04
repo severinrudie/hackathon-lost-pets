@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Hackathon_Lost_Pets</string>
+    <string name="app_name">Hackathon Lost Pets</string>
+    <string name="transition_photo">photo_transition</string>
 </resources>

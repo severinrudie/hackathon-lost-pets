@@ -50,7 +50,7 @@ public class PetListAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
 
 //        TODO: update layout with new xml
-        View contactView = inflater.inflate(R.layout.MATTSLIST, parent, false);
+        View contactView = inflater.inflate(R.layout.list_item, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(contactView);
         return viewHolder;
