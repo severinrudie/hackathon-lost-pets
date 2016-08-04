@@ -56,6 +56,7 @@ public class DetailActivity extends AppCompatActivity {
         String year = splitDate[0];
         String formattedDate = month + " " + day + ", " + year;
 
+        TextView name = (TextView) findViewById(R.id.dog_name);
         TextView breed = (TextView) findViewById(R.id.dog_breed);
         TextView date = (TextView) findViewById(R.id.dog_date_found);
         TextView gender = (TextView) findViewById(R.id.dog_gender);
@@ -63,6 +64,11 @@ public class DetailActivity extends AppCompatActivity {
         TextView area = (TextView) findViewById(R.id.dog_area);
         Button myPet = (Button) findViewById(R.id.myPetButton);
 
+        if (!pet.getName().equals("null")) {
+            name.setText(pet.getName());
+        } else {
+            name.setText("Unknown");
+        }
         breed.setText(pet.getAnimalBreed());
         date.setText(formattedDate);
         gender.setText(pet.getAnimalGender());
