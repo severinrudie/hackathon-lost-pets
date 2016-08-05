@@ -123,12 +123,24 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 })
                 .create();
-
-
         return myQuittingDialogBox;
-
-
     }
+
+
+//        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+//          //set message, title, and icon
+//          .setTitle("Let's get your pet back!")
+//          .setMessage("Info you need to retrieve your pet.\n\n"
+//            + "Location: "+ address+"\n\n"
+//            + "Phone: "+ phoneNumber.get(address)+"\n\n"
+//            + "Animal ID: "+ animalId)
+//          .setIcon(R.drawable.icon_profile_sm)
+//
+//          .create();
+//        return myQuittingDialogBox;
+
+
+//    }
 
     private void makeCall() {
         Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber.get(address).replace("-","")));

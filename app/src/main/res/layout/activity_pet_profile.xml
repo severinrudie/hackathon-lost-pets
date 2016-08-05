@@ -47,6 +47,36 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
+                android:text="Name"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/list_item_text"
+                android:textColor="@color/text_color"
+                android:paddingLeft="@dimen/list_item_text_padding"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/list_item_text_big"
+                android:textColor="@color/text_color"
+                android:text="Bandit"
+                android:id="@+id/dog_area"
+                android:paddingLeft="@dimen/list_item_text_padding"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_below="@+id/detail_color"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
                 android:text="Breed"
                 android:textAlignment="textEnd"
                 android:textSize="@dimen/list_item_text"
@@ -59,13 +89,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/list_item_text_big"
                 android:textColor="@color/text_color"
-                android:text="Terrier Mix"
-                android:id="@+id/dog_area"
+                android:text="Labrador Retriever"
                 android:paddingLeft="@dimen/list_item_text_padding"/>
 
 
         </LinearLayout>
-
         <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="0dp"-->
@@ -103,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/list_item_text_big"
                 android:textColor="@color/text_color"
-                android:text="Tricolor"
+                android:text="White / Yellow"
                 android:paddingLeft="@dimen/list_item_text_padding"/>
 
 
@@ -219,7 +247,6 @@
 
 
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -246,8 +273,27 @@
                 android:textColor="@color/text_color"
                 android:text="Tim Murphy 555-555-5555"
                 android:paddingLeft="@dimen/list_item_text_padding"/>
-
-
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_below="@+id/detail_color"
+            android:layout_margin="2dp"
+            android:orientation="horizontal" android:layout_gravity="center_horizontal"
+            android:gravity="center">
+            <Button
+                android:alpha="0.8"
+                android:textColor="#fff"
+                android:backgroundTint="@color/colorPrimary"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="My Pet is Lost"
+                android:id="@+id/lostButton" android:layout_gravity="center_horizontal"
+                android:textSize="16sp" android:layout_marginBottom="6dp"
+                android:textAlignment="center"/>
         </LinearLayout>
 
         <!--<TextView-->

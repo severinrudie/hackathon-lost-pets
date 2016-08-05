@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,9 +33,12 @@ public class MainActivity extends AppCompatActivity {
     mContext = this;
 
     verifyStoragePermissions(this);
-
+//
 //    DBHelper helper = DBHelper.getInstance(this);
-//    helper.dropAllTables();
+//    SQLiteDatabase db = helper.getWritableDatabase();
+//    helper.onCreate(db);
+
+//    helper.dropAllTables(db);
 
     final Button lostAndFound = (Button) findViewById(R.id.lostAndFoundButton);
     final Button petProfile = (Button) findViewById(R.id.petProfileButton);
