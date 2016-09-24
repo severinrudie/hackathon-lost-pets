@@ -66,6 +66,9 @@ public class SecondScreenActivity extends AppCompatActivity {
         foundAPet.startAnimation(pushLeft);
         overridePendingTransition(0, 0);
     }
+
+
+
     private AlertDialog AskOptionHome() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
                 //set message, title, and icon
