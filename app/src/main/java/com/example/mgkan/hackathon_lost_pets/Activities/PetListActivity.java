@@ -64,8 +64,6 @@ public class PetListActivity extends AppCompatActivity {
 
         verifyStoragePermissions(this);
 
-//        getActionBar().setTitle("Refine search");
-
         handleIntent(getIntent());
 
         rvPets = (RecyclerView) findViewById(R.id.recyclerView_petList_petListActivity);
@@ -151,11 +149,6 @@ public class PetListActivity extends AppCompatActivity {
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
-//        if (search.trim().equals("")){
-//            search = animal;
-//        } else {
-//            search = generalizeSearchString(search);
-//        }
 
         Call<List<Pet>> call = apiService.getPetsWithSearch(apiToken, "FOUND", "date DESC");
 
@@ -179,6 +172,17 @@ public class PetListActivity extends AppCompatActivity {
                     }
                     helper.setSavedTime(System.currentTimeMillis());
                     UPDATE_DB = false;
+
+                    PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
+
+//                    Toast.makeText(getBaseContext(), "TOAST", Toast.LENGTH_SHORT).show();
+
+                    if (rvPets.getAdapter() == null) {
+                        rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
+                        rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    } else {
+                        rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+                    }
                 }
 
                 @Override
@@ -188,15 +192,17 @@ public class PetListActivity extends AppCompatActivity {
                     Log.d("SEVCODE ", "" + call.request().url());
                 }
             });
-        }
-        PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
-
-        if (rvPets.getAdapter() == null) {
-            rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
-            rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         } else {
-            rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+            PetListAdapter adapter = new PetListAdapter(getBaseContext(), pets);
+
+            if (rvPets.getAdapter() == null) {
+                rvPets.setAdapter(new AlphaInAnimationAdapter(adapter));
+                rvPets.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+            } else {
+                rvPets.swapAdapter(new AlphaInAnimationAdapter(adapter), false);
+            }
         }
+
     }
 
 
@@ -261,6 +267,11 @@ public class PetListActivity extends AppCompatActivity {
         if ((current - saved) > 43200000) {
             UPDATE_DB = true;
         }
+
+        Log.d("SEVTEST:SAVED: ", ""+saved);
+        Log.d("SEVTEST:CURRENT: ", ""+current);
+        Log.d("SEVTEST:(c-s): ", "" + (current - saved));
+        Log.d("SEVTEST:UPDATE_DB: ", "" + UPDATE_DB);
     }
 
 

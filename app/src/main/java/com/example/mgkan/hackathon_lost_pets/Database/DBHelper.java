@@ -120,21 +120,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return string;
     }
 
-//    public static final String ID = "animalId";
-//    public static final String TYPE = "type";
-//    public static final String DATE = "date";
-//    public static final String DATE_TYPE = "dateType";
-//    public static final String COLOR = "color";
-//    public static final String IMAGE = "image";
-//    public static final String CITY = "city";
-//    public static final String NAME = "name";
-//    public static final String GENDER = "gender";
-//    public static final String BREED = "breed";
-//    public static final String LINK = "link";
-//    public static final String ZIP = "zip";
-//    public static final String ADDRESS = "address";
-//    public static final String MEMO = "memo";
-//    public static final String LOCATION = "location";
     public List<Pet> getPetListFromDb(String dogCat) {
         String sql = "SELECT * FROM " + SC.TABLE_PETS +" WHERE " + SC.TYPE + " = '" + dogCat +"';";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -186,6 +171,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     + " OR " + SC.BREED + " LIKE '%" + query + "%' " + " OR " + SC.ZIP
                     + " LIKE '%" + query + "%' " + " OR " + SC.MEMO + " LIKE '%" + query + "%' "
                     + " OR " + SC.LOCATION + " LIKE '%" + query + "%');";
+
         }
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
