@@ -67,6 +67,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if (!cursor.isAfterLast()) {
             return cursor.getLong(0);
         }
+        db.close();
         return 0;
     }
 
@@ -76,10 +77,15 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
         sql =  "INSERT INTO " + SC.TABLE_TIME + " (" + SC.SAVED_TIME + ") Values (" + time + ");";
         db.execSQL(sql);
-        System.out.println("");
+        db.close();
     }
 
-
+    public void flushTablePets() {
+        String sql = "DELETE FROM " + SC.TABLE_PETS +";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);
+        db.close();
+    }
 
     // This method returns the character ID of the inserted row after inserting character details
     public void insertPetIntoDb(Pet pet) {
@@ -109,6 +115,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + address + "', '" + memo + "', '" + location + "', '" + dayInt + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
+        db.close();
     }
 
 
@@ -148,6 +155,7 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
         cursor.close();
+        db.close();
         return pets;
     }
 
@@ -197,6 +205,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     , address, memo, location));
             cursor.moveToNext();
         }
+        db.close();
         return pets;
     }
 

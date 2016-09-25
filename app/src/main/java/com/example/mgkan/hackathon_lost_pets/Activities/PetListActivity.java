@@ -152,15 +152,15 @@ public class PetListActivity extends AppCompatActivity {
 
         Call<List<Pet>> call = apiService.getPetsWithSearch(apiToken, "FOUND", "date DESC");
 
-        DBHelper helper = DBHelper.getInstance(this);
+        final DBHelper helper = DBHelper.getInstance(this);
         pets = helper.getPetListFromDb(type);
 
-
         if (pets.size() == 0 || UPDATE_DB) {
+
+
             call.enqueue(new Callback<List<Pet>>() {
                 @Override
                 public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                    DBHelper helper = DBHelper.getInstance(getBaseContext());
                     int statusCode = response.code();
                     if (statusCode > 199 && statusCode < 300) {
 
