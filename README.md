@@ -22,6 +22,13 @@
 
 ##Description
 
-This app was written over 24 hours as an entry for a Socrata hackathon, where the goal was to write a compelling application using a public City of Seattle API.  The primary function of this entry, which won said hackathon, is to pull down information regarding lost cats and dogs recovered by the city, then display it in a readable format.
+This app was written over 24 hours as an entry for a Socrata hackathon where the goal was to write a compelling application using a public City of Seattle API.  The primary function of this entry, which won said hackathon, is to pull down information regarding lost cats and dogs recovered by the city, then display it in a readable format.
 
+Whenever a user searches for a lost pet, the database checks whether the current information is fewer than 12 hours old.  If not, the current information is dropped and the API queried again.  Located pets are then displayed to the user according to queries made to the local database, which may be modified by the user using a search bar.
+
+The user may search using any of the following information, and it is displayed for each animal: breed; gender; name; picture; color; region found.  Also shown (but not searchable) are the date found by the city, shelter address, shelter contact information, and animal ID.  Calling the appropriate shelter may be done with the push of a button.
+
+In the case of a resident locating a lost animal, the app will open an official webpage where its location may be reported.  Additionally, a list of tips regarding lost pets is available.
+
+Finally, a pet profile contains information about a users pet.  This is intended to store specific information that can be easily uploaded to a city website if the animal is ever lost, but at this time the data is mocked.
 
