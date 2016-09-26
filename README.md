@@ -20,10 +20,8 @@
 <img style="padding: 100px" src="./screenshots/detail_screen.png" width="200">
 </p>
 
-##Introduction
+##Description
+
+This app was written over 24 hours as an entry for a Socrata hackathon, where the goal was to write a compelling application using a public City of Seattle API.  The primary function of this entry, which won said hackathon, is to pull down information regarding lost cats and dogs recovered by the city, then display it in a readable format.
 
 
-
-###Section 1
-#######
-Details.

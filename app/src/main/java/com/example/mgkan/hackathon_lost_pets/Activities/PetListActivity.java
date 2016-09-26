@@ -162,7 +162,10 @@ public class PetListActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
                     int statusCode = response.code();
-                    if (statusCode > 199 && statusCode < 300) {
+                    if (statusCode > 199 && statusCode < 300
+                      && response.body().size() > 0) {
+
+                        helper.flushTablePets();
 
                         pets = (response.body());
                         for (Pet pet : pets) {
