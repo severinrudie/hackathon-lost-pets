@@ -20,7 +20,8 @@
             android:adjustViewBounds="true"
             android:transitionName="@string/transition_photo"
             android:id="@+id/kitty"
-            android:src="@drawable/kitty"/>
+            />
+        <!--android:src="@drawable/kitty"-->
 
         <ImageView
             android:layout_width="match_parent"

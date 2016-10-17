@@ -14,9 +14,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.mgkan.hackathon_lost_pets.Database.DBHelper;
 import com.example.mgkan.hackathon_lost_pets.Model.Pet;
+import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.builder.Builders;
 
 import java.util.List;
@@ -33,28 +35,44 @@ public class MainActivity extends AppCompatActivity {
     mContext = this;
 
     verifyStoragePermissions(this);
-//
-//    DBHelper helper = DBHelper.getInstance(this);
-//    SQLiteDatabase db = helper.getWritableDatabase();
-//    helper.onCreate(db);
 
-//    helper.dropAllTables(db);
+    ImageView ivKitty = (ImageView) findViewById(R.id.kitty);
+    Ion.with(ivKitty)
+      .placeholder(R.drawable.kitty)
+      .error(R.drawable.kitty)
+      .load("faulty url")
+      .withBitmapInfo();
+
 
     final Button lostAndFound = (Button) findViewById(R.id.lostAndFoundButton);
     final Button petProfile = (Button) findViewById(R.id.petProfileButton);
     final Button petInfo = (Button) findViewById(R.id.petInfoButton);
+    final LinearLayout buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
 
     lostAndFound.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent i = new Intent(MainActivity.this, SecondScreenActivity.class);
+        final Intent i = new Intent(MainActivity.this, SecondScreenActivity.class);
 
         Animation pushRight = AnimationUtils.loadAnimation(mContext, R.anim.push_out_right);
+        pushRight.setAnimationListener(new Animation.AnimationListener() {
+          @Override
+          public void onAnimationStart(Animation animation) {}
 
-        petProfile.startAnimation(pushRight);
-        petInfo.startAnimation(pushRight);
-        lostAndFound.startAnimation(pushRight);
-        startActivity(i);
+          @Override
+          public void onAnimationEnd(Animation animation) {
+            startActivity(i);
+          }
+
+          @Override
+          public void onAnimationRepeat(Animation animation) {}
+        });
+
+//        petProfile.startAnimation(pushRight);
+//        petInfo.startAnimation(pushRight);
+//        lostAndFound.startAnimation(pushRight);
+        buttonHolder.startAnimation(pushRight);
+//        startActivity(i);
         overridePendingTransition(0, 0);
       }
 
@@ -69,9 +87,10 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         Animation pushRight = AnimationUtils.loadAnimation(mContext, R.anim.push_out_right);
 
-        petProfile.startAnimation(pushRight);
-        petInfo.startAnimation(pushRight);
-        lostAndFound.startAnimation(pushRight);
+//        petProfile.startAnimation(pushRight);
+//        petInfo.startAnimation(pushRight);
+//        lostAndFound.startAnimation(pushRight);
+        buttonHolder.startAnimation(pushRight);
       }
     });
 
@@ -83,9 +102,10 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         Animation pushRight = AnimationUtils.loadAnimation(mContext, R.anim.push_out_right);
 
-        petProfile.startAnimation(pushRight);
-        petInfo.startAnimation(pushRight);
-        lostAndFound.startAnimation(pushRight);
+//        petProfile.startAnimation(pushRight);
+//        petInfo.startAnimation(pushRight);
+//        lostAndFound.startAnimation(pushRight);
+        buttonHolder.startAnimation(pushRight);
       }
     });
 
@@ -97,12 +117,14 @@ public class MainActivity extends AppCompatActivity {
     final Button lostAndFound = (Button) findViewById(R.id.lostAndFoundButton);
     final Button petProfile = (Button) findViewById(R.id.petProfileButton);
     final Button petInfo = (Button) findViewById(R.id.petInfoButton);
+    final LinearLayout buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
 
     Animation pullRight = AnimationUtils.loadAnimation(mContext, R.anim.pull_right);
 
-    petProfile.startAnimation(pullRight);
-    petInfo.startAnimation(pullRight);
-    lostAndFound.startAnimation(pullRight);
+//    petProfile.startAnimation(pullRight);
+//    petInfo.startAnimation(pullRight);
+//    lostAndFound.startAnimation(pullRight);
+    buttonHolder.startAnimation(pullRight);
   }
 
 

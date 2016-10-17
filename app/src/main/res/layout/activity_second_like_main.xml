@@ -20,7 +20,8 @@
             android:adjustViewBounds="true"
             android:transitionName="@string/transition_photo"
             android:id="@+id/kitty"
-            android:src="@drawable/kitty"/>
+            />
+        <!--android:src="@drawable/kitty"-->
 
         <ImageView
             android:layout_width="match_parent"
@@ -43,6 +44,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
+        android:id="@+id/buttonHolder"
         android:orientation="vertical">
         <android.support.v4.widget.Space
             android:layout_width="wrap_content"

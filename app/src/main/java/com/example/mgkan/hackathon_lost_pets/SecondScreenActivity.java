@@ -11,8 +11,11 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
+import com.koushikdutta.ion.Ion;
 
 
 public class SecondScreenActivity extends AppCompatActivity {
@@ -22,22 +25,23 @@ public class SecondScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_like_main);
 
-        // TODO: SEV db test code
-
-//        Pet pet = new Pet("a", "b", "2016-05-12T00:00:00", "d", "e","a", "b", "c", "d", "e","a", 1, "c", "d", "e");
-//        helper.dropAllTables();
-//        List<Pet> pets = helper.getPetListFromDb();
-//        helper.insertPetIntoDb(pet);
-        // TODO: SEV db test code
+        ImageView ivKitty = (ImageView) findViewById(R.id.kitty);
+        Ion.with(ivKitty)
+          .placeholder(R.drawable.kitty)
+          .error(R.drawable.kitty)
+          .load("faulty url")
+          .withBitmapInfo();
 
         mContext = this;
 
         final Button lostMyPet = (Button) findViewById(R.id.lostPetButton);
         final Button foundAPet = (Button) findViewById(R.id.foundPetButton);
+        final LinearLayout buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
 
         Animation pullLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left_second);
-        lostMyPet.startAnimation(pullLeft);
-        foundAPet.startAnimation(pullLeft);
+//        lostMyPet.startAnimation(pullLeft);
+//        foundAPet.startAnimation(pullLeft);
+        buttonHolder.startAnimation(pullLeft);
 
         lostMyPet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +65,11 @@ public class SecondScreenActivity extends AppCompatActivity {
         super.onBackPressed();
         final View lostMyPet = (Button) findViewById(R.id.lostPetButton);
         final View foundAPet = (Button) findViewById(R.id.foundPetButton);
+        final LinearLayout buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
         Animation pushLeft = AnimationUtils.loadAnimation(mContext, R.anim.push_out_left);
-        lostMyPet.startAnimation(pushLeft);
-        foundAPet.startAnimation(pushLeft);
+//        lostMyPet.startAnimation(pushLeft);
+//        foundAPet.startAnimation(pushLeft);
+        buttonHolder.startAnimation(pushLeft);
         overridePendingTransition(0, 0);
     }
 
