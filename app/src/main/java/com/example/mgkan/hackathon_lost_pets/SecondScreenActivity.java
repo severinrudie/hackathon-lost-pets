@@ -17,9 +17,13 @@ import android.widget.LinearLayout;
 import com.example.mgkan.hackathon_lost_pets.Activities.PetListActivity;
 import com.koushikdutta.ion.Ion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class SecondScreenActivity extends AppCompatActivity {
     private Context mContext;
+    ButtonAnimationHandler animationHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +40,18 @@ public class SecondScreenActivity extends AppCompatActivity {
 
         final Button lostMyPet = (Button) findViewById(R.id.lostPetButton);
         final Button foundAPet = (Button) findViewById(R.id.foundPetButton);
+        List<Button> buttons = new ArrayList<>();
+        buttons.add(lostMyPet);
+        buttons.add(foundAPet);
         final LinearLayout buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
 
         Animation pullLeft = AnimationUtils.loadAnimation(mContext, R.anim.pull_left_second);
+        animationHandler = new ButtonAnimationHandler(buttons, this);
+        animationHandler.setAnimation(pullLeft);
+        animationHandler.execute();
 //        lostMyPet.startAnimation(pullLeft);
 //        foundAPet.startAnimation(pullLeft);
-        buttonHolder.startAnimation(pullLeft);
+//        buttonHolder.startAnimation(pullLeft);
 
         lostMyPet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,10 +77,12 @@ public class SecondScreenActivity extends AppCompatActivity {
         final View foundAPet = (Button) findViewById(R.id.foundPetButton);
         final LinearLayout buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
         Animation pushLeft = AnimationUtils.loadAnimation(mContext, R.anim.push_out_left);
+        animationHandler.setAnimation(pushLeft);
+        animationHandler.execute();
+        overridePendingTransition(0, 0);
 //        lostMyPet.startAnimation(pushLeft);
 //        foundAPet.startAnimation(pushLeft);
-        buttonHolder.startAnimation(pushLeft);
-        overridePendingTransition(0, 0);
+//        buttonHolder.startAnimation(pushLeft);
     }
 
 
